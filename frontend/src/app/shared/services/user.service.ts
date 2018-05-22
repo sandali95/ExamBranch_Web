@@ -47,6 +47,18 @@ export class UserService {
 
     headers = headers.set('content-type','application/json');
     headers = headers.set('authorization', authToken);
-    return this.http.post<Authorization>('http://localhost:3000/users/profile',{headers:headers});
+    return this.http.post<Authorization>('http://localhost:3000/users/authentication',{headers:headers});
+  }
+
+  isAuthenticated(){
+    this.getProfile().subscribe(
+      data => {
+        if(data.success){
+          return true;
+        }else{
+          return false;
+        }
+      }
+    );
   }
 }

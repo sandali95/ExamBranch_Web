@@ -90,7 +90,7 @@ router.post('/login', (req,res)=>{
 });
 
 //user profile data
-router.get('/profile', verifyToken, (req,res)=>{
+router.get('/authentication', verifyToken, (req,res)=>{
     jwt.verify(req.token, config.secret, (err,authData)=>{
         if(err) {
             res.status(403).json({
