@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material';
+import { MatDialog, MatSnackBar } from '@angular/material';
 import { LoginComponent } from '../login/login.component';
+import { UserService } from '../../shared/services/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -10,9 +12,12 @@ import { LoginComponent } from '../login/login.component';
 export class NavbarComponent implements OnInit {
   
   isPopedOpen : boolean = false;
-  constructor( private dialog : MatDialog) { }
+
+  constructor( private dialog : MatDialog, private userService : UserService,
+  private router : Router, public snackBar : MatSnackBar) { }
 
   ngOnInit() {
+
   }
 
   onLogin(){
@@ -26,6 +31,12 @@ export class NavbarComponent implements OnInit {
       result =>{
         this.isPopedOpen = false;
       });
+  }
+
+  onLogout(){
+    this.userService.logOut();
+    this.snackBar.open('Logged Out!','',{duration:1000});
+    this.router.navigate(['/dashboard']);
   }
 
 }

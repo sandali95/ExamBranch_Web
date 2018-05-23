@@ -1,5 +1,9 @@
 <mat-toolbar color='primary'>
   UCSC Exam Branch
   <span class="example-spacer"></span>
-  <button mat-raised-button color='primary' (click)="onLogin()">Login</button>
+  <button mat-raised-button color='primary' (click)="onLogin()" *ngIf ="!userService.isLoggedIn()">Login</button>
+
+  <button mat-raised-button color='primary' routerLink="/user/profile"  *ngIf ="userService.isLoggedIn()">Profile</button>
+  <button mat-raised-button color='primary' (click)="onLogout()" *ngIf ="userService.isLoggedIn()">LogOut</button>
+
 </mat-toolbar>

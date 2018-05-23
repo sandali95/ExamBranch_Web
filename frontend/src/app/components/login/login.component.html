@@ -8,16 +8,17 @@
     </mat-toolbar>
       
     <div class="login-container">
-        <form [formGroup]="loginForm" (submit)="onSubmit()" class="login" >
+        <form [formGroup]="loginForm"  class="login" >
             <mat-form-field>
               <input matInput placeholder="Email" formControlName="email" type="email">
               </mat-form-field>
               <br>
             <mat-form-field>
-              <input matInput placeholder="password" formControlName="password" type="password">
+              <input matInput placeholder="Password" formControlName="password" type="password">
             </mat-form-field>
             <br>
-            <button mat-raised-button color="accent" type="submit" [disabled]="loginForm.invalid">Login</button>
+            <button mat-raised-button class="button" color="primary" (click)="onSubmit(loginForm)" [disabled]="loginForm.invalid">Login</button>
+            <button mat-raised-button class="button" color="accent" (click)="loginForm.reset();">Reset</button>
         </form>
     </div>     
 

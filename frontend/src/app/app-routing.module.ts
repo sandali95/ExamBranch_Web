@@ -13,6 +13,10 @@ const routes : Routes = [
     path      : 'dashboard',
     component : DashbordComponent
   },
+  {
+    path         : 'user',
+    loadChildren : 'app/components/user/user.module#UserModule'
+  }
   // {
   //   path       : '',
   //   redirectTo : 'dashboard',

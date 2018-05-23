@@ -54,7 +54,7 @@ router.post('/register',(req,res)=>{
 router.post('/login', (req,res)=>{
     User.findEmail(req.body.email, (err,user)=>{
         if(user.length<1){
-            return res.status(402).json({
+            return res.status(403).json({
                 success : false,
                 message : 'No user exists for the Email'
             });
@@ -72,11 +72,16 @@ router.post('/login', (req,res)=>{
                     return res.status(200).json({
                         success : true,
                         message : 'Authentication successful',
-                        token   : `Bearer ${token}`
+                        token   : `Bearer ${token}`,
+                        user    : {
+                            username : user[0].username,
+                            email    : user[0].email
+                        }
                     });
                 }else{
                     return res.status(401).json({
-                        message:'Authentication Unsuccessful'
+                        success: false,
+                        message: 'Authentication Unsuccessful'
                     });
                 }
             });
@@ -86,15 +91,17 @@ router.post('/login', (req,res)=>{
 
 //user profile data
 router.get('/profile', verifyToken, (req,res)=>{
-    console.log('/profile');
     jwt.verify(req.token, config.secret, (err,authData)=>{
         if(err) {
-            res.sendStatus(403);
+            res.status(403).json({
+                success : false,
+                message : 'Unauthorizad',
+            });
         }else{
             res.status(200).json({
                 success : true,
                 message : 'Authorizad',
-                user    : authData,
+                authData: authData,
             });
         }
     });
