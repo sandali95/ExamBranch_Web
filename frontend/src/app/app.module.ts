@@ -11,6 +11,7 @@ import { LoginComponent } from './components/login/login.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { UserService } from './shared/services/user.service';
+import { CalenderComponent } from './components/calender/calender.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { UserService } from './shared/services/user.service';
     DashbordComponent,
     LoginComponent,
     NavbarComponent,
-    AdminComponent
+    AdminComponent,
+    CalenderComponent
   ],
   imports: [
     BrowserModule,

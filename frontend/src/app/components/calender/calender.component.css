@@ -1,0 +1,30 @@
+#calender {
+    margin-top: 20px;
+    width: 130px;
+    height: 180px;
+    background-color: #004D40
+    ;
+    border-radius: 5px;
+}
+
+#calender>p {
+    font-family: Verdana, Tahoma, sans-serif;
+    padding: 10px 0;
+    margin: 0;
+    color: #fff;
+    text-align: center;
+}
+
+#calender-day{
+    font-size: 16px;
+}
+
+#calender-month{
+    font-size: 14px;
+}
+
+#calender-date{
+    font-size: 64px;
+    padding-top: 10px;
+    padding-bottom: 0;
+}
