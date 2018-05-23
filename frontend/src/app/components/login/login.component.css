@@ -1,0 +1,24 @@
+.example-card {
+    max-width: 100px;
+}
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.login-container {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    padding-top: 10px;
+}
+
+.login{
+  align-self: center;
+  width: 100%;
+}
+
+.toolbar {
+  border-radius: 5px;
+  padding-bottom: 10px;
+}
+  
