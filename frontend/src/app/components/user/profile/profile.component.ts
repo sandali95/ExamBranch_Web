@@ -24,6 +24,7 @@ export class ProfileComponent implements OnInit {
         if(data.success){
           this.userService.user = data.user;
         }else{
+          console.log(data);
           this.userService.logOut();
           this.snackBar.open('Session Expired ! Please Sign In','',{duration:5000});
           this.router.navigate(['/dashboard']);

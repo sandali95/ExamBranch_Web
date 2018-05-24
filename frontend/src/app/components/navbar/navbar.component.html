@@ -1,6 +1,7 @@
 <mat-toolbar color='primary'>
-  UCSC Exam Branch
+  <a mat-button  routerLink="/dashboard" class="title">UCSC Exam Branch</a> 
   <span class="example-spacer"></span>
+  
   <button mat-raised-button color='primary' (click)="onLogin()" *ngIf ="!userService.isLoggedIn()">Login</button>
 
   <button mat-raised-button color='primary' routerLink="/user/profile"  *ngIf ="userService.isLoggedIn()">Profile</button>

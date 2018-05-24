@@ -16,12 +16,12 @@ const routes : Routes = [
   {
     path         : 'user',
     loadChildren : 'app/components/user/user.module#UserModule'
+  },
+  {
+    path       : '',
+    redirectTo : 'dashboard',
+    pathMatch  : 'full'
   }
-  // {
-  //   path       : '',
-  //   redirectTo : 'dashboard',
-  //   pathMatch : 'full'
-  // }
 ]
 
 @NgModule({
