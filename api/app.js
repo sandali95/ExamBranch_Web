@@ -7,6 +7,7 @@ const morgan = require('morgan');
 
 const config = require('./config/database');
 const userRoutes = require('./routes/users');
+const newsRoutes = require('./routes/news');
 const app = express();
 
 //Init database connection
@@ -29,17 +30,11 @@ app.use(bodyParser.json());
 //CORS middleware
 app.use(cors());
 
-//Home route
-app.get('/', (req, res)=>{
-    res.send('Dashbord');
-});
-
-app.post('/', (req, res)=>{
-    res.send('post');
-});
-
+//Items for newsfeed - Home routes
+app.use('/', newsRoutes);
 
 //User authentication routes
 app.use('/users',userRoutes);
+
 
 module.exports = app ;
