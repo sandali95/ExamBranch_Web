@@ -1,0 +1,39 @@
+.example-card {
+    max-width: 100px;
+}
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.block{
+  display: block;
+}
+
+.registration-container {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    padding-top: 20px;
+}
+
+.registration{
+  align-self: center;
+  width: 100%;
+}
+
+.toolbar {
+  border-radius: 5px;
+  padding-bottom: 10px;
+}
+
+.mat-radio-button ~ .mat-radio-button {
+  padding-right: 16px;
+}
+
+.mat-form-field ~ .mat-form-field{
+  display: inline;
+}
+
+.mat-radio-button ~ .mat-radio-button{
+  padding: 5px;
+}

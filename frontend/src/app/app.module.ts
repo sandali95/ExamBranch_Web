@@ -12,6 +12,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { UserService } from './shared/services/user.service';
 import { CalenderComponent } from './components/calender/calender.component';
+import { RegistrationComponent } from './components/registration/registration.component';
+import { DataService } from './shared/services/data.service';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,8 @@ import { CalenderComponent } from './components/calender/calender.component';
     LoginComponent,
     NavbarComponent,
     AdminComponent,
-    CalenderComponent
+    CalenderComponent,
+    RegistrationComponent
   ],
   imports: [
     BrowserModule,
@@ -31,8 +34,8 @@ import { CalenderComponent } from './components/calender/calender.component';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  entryComponents: [ LoginComponent],
-  providers: [ UserService ],
+  entryComponents: [ LoginComponent,RegistrationComponent],
+  providers: [ UserService, DataService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
