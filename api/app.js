@@ -8,6 +8,7 @@ const morgan = require('morgan');
 const config = require('./config/database');
 const userRoutes = require('./routes/users');
 const newsRoutes = require('./routes/news');
+const examRoutes = require('./routes/exams');
 const app = express();
 
 //Init database connection
@@ -35,6 +36,9 @@ app.use('/', newsRoutes);
 
 //User authentication routes
 app.use('/users',userRoutes);
+
+//Exam routes
+app.use('/exams',examRoutes);
 
 
 module.exports = app ;

@@ -1,10 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
 
 const newsItem = require('../models/newsItem');
-const config = require('../config/database');
 
 const router = express.Router();
 
