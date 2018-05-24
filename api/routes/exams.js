@@ -55,23 +55,22 @@ router.post('/register', (req,res)=>{
     })
 });
 
-router.post('/test',(req,res)=>{
-    let student ={
-        indexno : 'Number',
-        registration : 'String',
-        fullname : 'String',
-        email : 'String',
-        year : 'Number',
-        subjects : ['new sub']};
-    Exam.update(
-        {_id:req.body.id},
-        {$push:{'registrations':student}},
-        (err,data)=>{
-            if(err) throw err;
-            res.json({data});
-        }
-    )
-
-    
-});
+//get all the registations for a given exam id
+router.get('/getstudents/:examid', (req,res)=>{
+    let id = req.params.exam_id;
+    Exam.findRegistrations(id, (error,data)=>{
+        if(error){
+            res.status(500).json({
+                success : false,
+                message : error,
+            });
+        }else{
+            res.status(201).json({
+                success : true,
+                message : 'All Student Registered',
+                data : data//getting all the data
+            });
+        }  
+    })
+})
 module.exports = router;

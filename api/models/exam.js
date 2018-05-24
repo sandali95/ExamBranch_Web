@@ -70,3 +70,7 @@ module.exports.updateExam = (exam_id,student,callback)=>{
         callback
     );
 }
+
+module.exports.findRegistration = (id,callback)=>{
+    Exam.findById(id,callback);
+}
