@@ -37,6 +37,10 @@ const StudentSchema = mongoose.Schema({
 });
 
 const ExamSchema = mongoose.Schema({
+    news_id :{
+        type     : String,
+        required : true
+    },
     exam : {
         type : String,
         required : true,
@@ -73,4 +77,8 @@ module.exports.updateExam = (exam_id,student,callback)=>{
 
 module.exports.findRegistration = (id,callback)=>{
     Exam.findById(id,callback);
+}
+
+module.exports.findExam = (id,callback)=>{
+    Exam.find({news_id:id}, callback);
 }

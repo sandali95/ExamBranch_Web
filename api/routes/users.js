@@ -54,7 +54,7 @@ router.post('/register',(req,res)=>{
 router.post('/login', (req,res)=>{
     User.findEmail(req.body.email, (err,user)=>{
         if(user.length<1){
-            return res.status(403).json({
+            return res.json({
                 success : false,
                 message : 'No user exists for the Email'
             });
@@ -79,7 +79,7 @@ router.post('/login', (req,res)=>{
                         }
                     });
                 }else{
-                    return res.status(401).json({
+                    return res.json({
                         success: false,
                         message: 'Authentication Unsuccessful'
                     });

@@ -1,11 +1,12 @@
-<mat-card class="news" color='accent'>
-    <mat-card-title>First Semester Exams 2018</mat-card-title>
-    <mat-card-content>
-            Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature 
-            from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, 
-            looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, 
-            and going through the cites of the word in classical literature, discovered the undoubtable source.
-            <br>
-            <a mat-button (click)='onRegister()'>Register Here</a> 
-    </mat-card-content>
-</mat-card>
+<div class="newsfeed" *ngFor="let news of newsfeed" >
+    <mat-card class="news" color='accent' >
+        <mat-card-title>{{news.title}}</mat-card-title>
+        <mat-card-content>{{news.content}}
+                <br>
+                <a mat-button (click)='onRegister(news)'>Register Here</a> 
+        </mat-card-content>
+    </mat-card>
+</div>
+
+
+

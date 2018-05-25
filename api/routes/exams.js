@@ -36,6 +36,7 @@ router.post('/register', (req,res)=>{
         indexno : req.body.indexno,
         registration : req.body.registration,
         fullname : req.body.fullname,
+        email : req.body.email,
         year : req.body.year,
         subjects : req.body.subjects
     }
@@ -72,5 +73,28 @@ router.get('/getstudents/:examid', (req,res)=>{
             });
         }  
     })
-})
+});
+
+router.get('/getexamdetails', (req,res)=>{
+    
+    let id = req.query.newsid;
+    console.log(id);
+    Exam.findExam(id, (error,data)=>{
+        if(error){
+            res.json({
+                success : false,
+                message : error,
+            });
+        }else{
+            res.json({
+                success : true,
+                message : 'Exam details received',
+                exam_id : data[0]._id,
+                year3 :  data[0].subjects.year3_optional,
+                year4 : data[0].subjects.year4_optional,
+                //exam details
+            });
+        }   
+    })
+});
 module.exports = router;

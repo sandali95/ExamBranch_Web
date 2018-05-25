@@ -37,12 +37,13 @@ export class LoginComponent implements OnInit {
     this.userService.authenticate(user).subscribe(
       data => {
       if(data.success){
+        this.router.navigate['/dashboard'];
+        this.dialogeRef.close();
         this.userService.storeUser(data.token);
         this.snackBar.open('Logged In!', '', {duration: 2000,});
-        this.dialogeRef.close();
-        this.router.navigate['/dashboard'];
       }else{
-        //error in login
+        this.loginForm.reset();
+        this.snackBar.open('Invalida Credentials!', '', {duration: 2000,});
       }       
       }
     );
