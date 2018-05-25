@@ -12,8 +12,9 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { UserService } from './shared/services/user.service';
 import { CalenderComponent } from './components/calender/calender.component';
-import { RegistrationComponent } from './components/registration/registration.component';
+import { RegistrationComponent } from './components/user/registration/registration.component';
 import { DataService } from './shared/services/data.service';
+import { RepeatExamComponent } from './components/user/repeat-exam/repeat-exam.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { DataService } from './shared/services/data.service';
     NavbarComponent,
     AdminComponent,
     CalenderComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    RepeatExamComponent
   ],
   imports: [
     BrowserModule,

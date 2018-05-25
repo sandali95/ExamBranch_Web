@@ -54,9 +54,9 @@ router.post('/updatenews', (req,res)=>{
     console.log(req.body);
     let news = {
         _id : req.body._id,
+        studentType : req.body.student,//whether undergraduate or postgrdauate related exam 
         title : req.body.title,
-        content : req.body.content,
-        student : req.body.student//whether undergraduate or postgrdauate related exam    
+        content : req.body.content   
     }
     
     newsItem.updateNews(news, (error,data)=>{

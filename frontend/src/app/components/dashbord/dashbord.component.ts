@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatSnackBar } from '@angular/material';
-import { RegistrationComponent } from '../registration/registration.component';
+import { RegistrationComponent } from '../user/registration/registration.component';
 import { DataService } from '../../shared/services/data.service';
 
 export interface subjects{}
@@ -21,21 +21,28 @@ export class DashbordComponent implements OnInit {
 
   onRegister(news){
     //should check whether the student is udergraduate or postgraduate
-    //get the exam details fro examschema
-    this.dataService.getExam(news._id).subscribe(
-      data=>{
-        this.dialoge.open(RegistrationComponent ,{
-          width : '1000px',
-          data  : {
-            id: data.exam_id,
-            title : news.title,
-            year3 : data.year3,
-            year4 : data.year4,
-            subjects :[]
-          } //send userdetails for auto completion
-        });    
-      }
-    );
+    if(news.student == 'undergraduate'){
+      //get the exam details from examschema
+      this.dataService.getExam(news._id).subscribe(
+        data=>{
+          this.dialoge.open(RegistrationComponent ,{
+            width : '1000px',
+            data  : {
+              id    : data.exam_id,
+              title : news.title,
+              year3 : data.year3,
+              year4 : data.year4,
+              subjects :[]
+            } //send userdetails for auto completion
+          });    
+        });
+    }else if(news.student == 'repeat'){ // for repeat exam forms
+
+    }else{//
+
+    }
+    
+    
     
   }
 
