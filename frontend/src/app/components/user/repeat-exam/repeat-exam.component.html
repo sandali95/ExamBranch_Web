@@ -8,7 +8,7 @@
   </mat-toolbar>
       
     <div class="registration-container">
-        <form [formGroup]="registrationForm"  class="registration" >
+        <form [formGroup]="repeatExamForm"  class="registration" >
             <mat-radio-group formControName="field">
               <mat-radio-button value="cs">Computer Science</mat-radio-button>
               <mat-radio-button value="is">Information Systems</mat-radio-button>
@@ -59,9 +59,9 @@
                   <mat-checkbox  (change)="checkbox($event,subject)" formControlName="subjects">{{subject}}</mat-checkbox>
                 </div>
             </mat-card>
-  
-            <button mat-raised-button class="button" color="primary" (click)="onRegister(registrationForm)" [disabled]="!registrationForm.valid">Login</button>
-            <button mat-raised-button class="button" color="accent" (click)="registrationForm.reset();">Reset</button>
+            <br>
+            <button mat-raised-button class="button" color="primary" (click)="onRegister(repeatExamForm)" [disabled]="!repeatExamForm.valid">Login</button>
+            <button mat-raised-button class="button" color="accent" (click)="repeatExamForm.reset();">Reset</button>
           </form>
   
     

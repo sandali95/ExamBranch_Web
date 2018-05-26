@@ -25,32 +25,35 @@ export class DashbordComponent implements OnInit {
     //should check whether the student is udergraduate or postgraduate
     if(news.student == 'undergraduate'){
       //get the exam details from examschema
-      this.dataService.getExam(news._id).subscribe(
+      console.log(news.exam_id)
+      this.dataService.getExam(news.exam_id).subscribe(
         data=>{
           this.dialoge.open(RegistrationComponent ,{
             width : '1000px',
             data  : {
               id    : data.exam_id,
               title : news.title,
-              year3 : data.year3,
-              year4 : data.year4,
+              year3 : data.year3_optional,
+              year4 : data.year4_optional,
               subjects :[]
             } //send userdetails for auto completion
           });    
         });
     }else if(news.student == 'repeat'){ // for repeat exam forms
-      this.dataService.getExam(news._id).subscribe(
+      this.dataService.getExam(news.exam_id).subscribe(
         data=>{
           this.dialoge.open(RepeatExamComponent ,{
             width : '1000px',
             data  : {
               id    : data.exam_id,
               title : news.title,
-              year3 : data.year3,
-              year4 : data.year4,
-              subjects :[]
+              subjects :[],
+              year1 : data.year1,
+              year2 : data.year2,
+              year3 : data.year3.concat(data.year3_optional),
+              year4 : data.year4.concat(data.year4_optional)
             } //send userdetails for auto completion
-          });    
+          });   
         });  
     }else{//
 

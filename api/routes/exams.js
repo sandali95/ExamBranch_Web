@@ -8,7 +8,7 @@ const router = express.Router();
 //add new exam shedule
 router.post('/save', (req,res)=>{
     let exam = {
-        news_id : req.body.news_id,
+        //exam_id : req.body.news_id,
         exam : req.body.exam,
         date : req.body.date,
         subjects : req.body.subjects
@@ -78,7 +78,7 @@ router.get('/getstudents/:examid', (req,res)=>{
 
 router.get('/getexamdetails', (req,res)=>{
     
-    let id = req.query.newsid;
+    let id = req.query.examid;
     console.log(id);
     Exam.findExam(id, (error,data)=>{
         if(error){
@@ -90,9 +90,14 @@ router.get('/getexamdetails', (req,res)=>{
             res.json({
                 success : true,
                 message : 'Exam details received',
+                //data : data
                 exam_id : data[0]._id,
-                year3 :  data[0].subjects.year3_optional,
-                year4 : data[0].subjects.year4_optional,
+                year1   : data[0].subjects.year1,
+                year2   : data[0].subjects.year2,
+                year3   : data[0].subjects.year3,
+                year4   : data[0].subjects.year4,
+                year3_optional : data[0].subjects.year3_optional,
+                year4_optional : data[0].subjects.year4_optional
                 //exam details
             });
         }   

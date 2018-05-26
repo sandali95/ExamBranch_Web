@@ -8,7 +8,8 @@ const router = express.Router();
 //insert news to the database
 router.post('/savenews', (req,res)=>{
     let news = {
-        title : req.body.title,
+        exam_id : req.body.exam_id,
+        title   : req.body.title,
         content : req.body.content,
         student : req.body.student//whether undergraduate or postgrdauate related exam    
     }
@@ -54,6 +55,7 @@ router.post('/updatenews', (req,res)=>{
     console.log(req.body);
     let news = {
         _id : req.body._id,
+        exam_id : req.body.exam_id,
         studentType : req.body.student,//whether undergraduate or postgrdauate related exam 
         title : req.body.title,
         content : req.body.content   

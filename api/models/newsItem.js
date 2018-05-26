@@ -1,6 +1,10 @@
 const mongoose = require('mongoose');
 
 const newsSchema = mongoose.Schema({
+    exam_id : {
+        required : true,
+        type     : String,
+    },
     title   : {
         required : true,
         type     : String,

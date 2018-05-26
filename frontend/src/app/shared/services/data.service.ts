@@ -11,8 +11,13 @@ export interface subjects{
   success : boolean;
   message : String;
   exam_id : String;
+  year1   : any;
+  year2   : any;
   year3   : any;
   year4   : any;
+  year3_optional : any;
+  year4_optional : any;
+  
 }
 
 @Injectable()
@@ -30,7 +35,7 @@ export class DataService {
     let headers = new HttpHeaders();
     headers = headers.set('content-type','application/json');
     let params = new HttpParams();
-    params = params.append('newsid',_id);
+    params = params.append('examid',_id);
     return this.http.get<subjects>('http://localhost:3000/exams/getexamdetails',{headers:headers, params:params});
   }
 

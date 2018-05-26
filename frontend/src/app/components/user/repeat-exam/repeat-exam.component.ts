@@ -11,7 +11,7 @@ import { DataService } from '../../../shared/services/data.service';
 })
 export class RepeatExamComponent implements OnInit {
 
-  public registrationForm : FormGroup;
+  public repeatExamForm : FormGroup;
   year : String ;
   checked : false;
   sub:String[] =[];
@@ -20,7 +20,7 @@ export class RepeatExamComponent implements OnInit {
 
 
   ngOnInit() {
-    this.registrationForm = this.fb.group({
+    this.repeatExamForm = this.fb.group({
       field     : [''],
       index     : [''],
       regno     : [''],
@@ -36,14 +36,14 @@ export class RepeatExamComponent implements OnInit {
     this.dialogeRef.close();
   }
 
-  onRegister(registrationForm){
+  onRegister(repeatExamForm){
     let form ={
       id : this.data.id,
-      indexno : this.registrationForm.value.indexno,
-      registration : this.registrationForm.value.regno,
-      fullname : this.registrationForm.value.name,
-      email :this.registrationForm.value.email,
-      year : this.registrationForm.value.year,
+      indexno : this.repeatExamForm.value.indexno,
+      registration : this.repeatExamForm.value.regno,
+      fullname : this.repeatExamForm.value.name,
+      email :this.repeatExamForm.value.email,
+      year : this.repeatExamForm.value.year,
       subjects : this.sub
     };
     this.dataService.registration(form).subscribe(
@@ -53,15 +53,20 @@ export class RepeatExamComponent implements OnInit {
 
   subjectSelection(){
     if(this.year == "3"){
-      this.data.subjects = this.data.year3;
+      this.data.subjects = this.data.year3
+      return true;       
     }else if(this.year == "4"){
       this.data.subjects = this.data.year4;
+      return true;       
     }else if(this.year == "1"){
       this.data.subjects = this.data.year1;
-    }else{
+      return true;       
+    }else if(this.year == "2"){
       this.data.subjects = this.data.year2;
+      return true;       
+    }else{
+      return false;
     }
-    return true;       
   }
 
   checkbox(event,subject){
