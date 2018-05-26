@@ -18,8 +18,6 @@ export class DashbordComponent implements OnInit {
   public snackBar : MatSnackBar, private admin:AdminService) { }
 
   ngOnInit() {
-    this.admin.test = "sandali";
-    console.log(this.admin.test);
     this.getAllNews();
   }
 

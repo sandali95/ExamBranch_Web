@@ -3,7 +3,6 @@ import { AdminService } from '../../../shared/service/services/admin.service';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
-import { resolve } from 'path';
 
 @Component({
   selector: 'app-login',
@@ -17,6 +16,7 @@ export class LoginComponent implements OnInit {
   private router : Router, public snackbar : MatSnackBar) { }
 
   ngOnInit() {  
+    this.adminService.loggedAsAdmin = true;
     this.adminlogin = this.fb.group({
       username:[''],
       password : ['']
