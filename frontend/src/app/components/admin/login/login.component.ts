@@ -26,12 +26,12 @@ export class LoginComponent implements OnInit {
   onSubmit(form){
     let value = this.adminService.onLogin(form.value);
     if(value){
-      console.log(value);
+      this.adminService.isLoggedIn = true;
       this.router.navigate(['/admin/newsfeed']);
+      this.snackbar.open('Logged In','',{duration : 1000});
     }
   }
-  onlogout(){
-    this.adminService.loggedAsAdmin = false;
-  }
+
+  
 
 }

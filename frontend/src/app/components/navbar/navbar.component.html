@@ -11,12 +11,12 @@
 
 
 <!-- //for admin dashbord -->
-<mat-toolbar color='primary' *ngIf ="admin.isLoggedIn">
-  <a mat-button  routerLink="/dashboard" class="title">UCSC Exam Branch</a> 
+<mat-toolbar color='warn' *ngIf ="admin.isLoggedIn && admin.loggedAsAdmin ">
+  <a mat-button  routerLink="/admin/newsfeed" class="title">UCSC Exam Branch</a> 
   <span class="example-spacer"></span>
   
 
   <button mat-raised-button color='primary' >Profile</button>
-  <button mat-raised-button color='primary' (click)="onLogout()" >LogOut</button>
+  <button mat-raised-button color='primary' (click)="onlogout()" >LogOut---</button>
 
 </mat-toolbar>
