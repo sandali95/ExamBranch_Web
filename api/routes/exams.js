@@ -8,6 +8,7 @@ const router = express.Router();
 //add new exam shedule
 router.post('/save', (req,res)=>{
     let exam = {
+        news_id : req.body.news_id,
         exam : req.body.exam,
         date : req.body.date,
         subjects : req.body.subjects

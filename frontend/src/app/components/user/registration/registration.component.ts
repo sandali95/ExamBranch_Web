@@ -46,7 +46,7 @@ export class RegistrationComponent implements OnInit {
       subjects : this.sub
     };
     this.dataService.registration(form).subscribe(
-      data =>{console.log(data)}
+      data =>{console.log(data)}//what happend?
     );
   }
 

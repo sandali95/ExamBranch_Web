@@ -17,7 +17,7 @@ $alt-accent:  mat-palette($mat-blue-grey,100);
 
 $alt-theme: mat-dark-theme($alt-primary, $alt-accent);
 
-.button{
+.repeat{
     @include angular-material-theme($alt-theme);
 
 }

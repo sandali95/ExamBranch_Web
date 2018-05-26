@@ -1,3 +1,72 @@
-<p>
-  repeat-exam works!
-</p>
+<mat-dialog-content>
+  <mat-toolbar color="primary" class="toolbar">
+    <mat-toolbar-row>
+      <span>{{data.title}}</span>
+      <span class="example-spacer"></span>
+      <a mat-button (click)="onCancel()"><mat-icon>cancel</mat-icon></a>
+    </mat-toolbar-row>
+  </mat-toolbar>
+      
+    <div class="registration-container">
+        <form [formGroup]="registrationForm"  class="registration" >
+            <mat-radio-group formControName="field">
+              <mat-radio-button value="cs">Computer Science</mat-radio-button>
+              <mat-radio-button value="is">Information Systems</mat-radio-button>
+              <mat-radio-button value="se">Software Engineering</mat-radio-button>
+            </mat-radio-group>        
+  
+            <mat-form-field class="block" >
+              <input matInput placeholder="Index Number" formControlName="index" type="text">
+            </mat-form-field>
+            <mat-form-field class="block" >
+              <input matInput placeholder="Registration Number" formControlName="regno" type="text">
+            </mat-form-field>
+  
+           
+            <mat-form-field>
+                <input matInput placeholder="Name with Initials"  type="text">
+                <span matPrefix>
+                  <mat-radio-group>
+                    <mat-radio-button value="1">Mr.</mat-radio-button>
+                    <mat-radio-button value="2">Ms.</mat-radio-button>
+                  </mat-radio-group>&nbsp;
+                </span>
+            </mat-form-field>
+  
+            <mat-form-field >
+                <input matInput placeholder="Name in Full"  formControlName="name" type="text">
+            </mat-form-field>
+  
+            <mat-form-field >
+              <input matInput placeholder="Contact No" formControlName="contact"  type="number">
+            </mat-form-field>
+                
+            <mat-form-field >
+              <input matInput placeholder="Email" formContolName="email" type="email">
+            </mat-form-field>
+  
+            <mat-form-field >
+              <mat-select placeholder="Year" [(ngModel)]="year" formControlName="year">
+                <mat-option [value]="1">1st Year</mat-option>
+                <mat-option [value]="2">2nd Year </mat-option>
+                <mat-option [value]="3">3rd Year</mat-option>
+                <mat-option [value]="4">4th Year</mat-option>
+              </mat-select>
+            </mat-form-field>
+  
+            <mat-card *ngIf="subjectSelection()">
+                <div class="column" *ngFor="let subject of data.subjects" >
+                  <mat-checkbox  (change)="checkbox($event,subject)" formControlName="subjects">{{subject}}</mat-checkbox>
+                </div>
+            </mat-card>
+  
+            <button mat-raised-button class="button" color="primary" (click)="onRegister(registrationForm)" [disabled]="!registrationForm.valid">Login</button>
+            <button mat-raised-button class="button" color="accent" (click)="registrationForm.reset();">Reset</button>
+          </form>
+  
+    
+            
+        
+    </div> 
+  
+  </mat-dialog-content>

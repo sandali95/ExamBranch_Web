@@ -36,7 +36,7 @@ import { RepeatExamComponent } from './components/user/repeat-exam/repeat-exam.c
     ReactiveFormsModule,
     HttpClientModule
   ],
-  entryComponents: [ LoginComponent,RegistrationComponent],
+  entryComponents: [ LoginComponent,RegistrationComponent, RepeatExamComponent],
   providers: [ UserService, DataService ],
   bootstrap: [AppComponent]
 })
