@@ -18,10 +18,14 @@ const routes : Routes = [
     loadChildren : 'app/components/user/user.module#UserModule'
   },
   {
-    path       : '',
-    redirectTo : '',
-    pathMatch  : 'full'
-  }
+    path         : 'admin',
+    loadChildren : 'app/components/admin/admin.module#AdminModule'
+  },
+  // {
+  //   path       : '',
+  //   redirectTo : '',
+  //   pathMatch  : 'full'
+  // }
 ]
 
 @NgModule({

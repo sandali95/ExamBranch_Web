@@ -1,4 +1,4 @@
-<mat-toolbar color='primary'>
+<mat-toolbar color='primary' *ngIf="admin.loggedAsAdmin">
   <a mat-button  routerLink="/dashboard" class="title">UCSC Exam Branch</a> 
   <span class="example-spacer"></span>
   
@@ -6,5 +6,17 @@
 
   <button mat-raised-button color='primary' routerLink="/user/profile"  *ngIf ="userService.isLoggedIn()">Profile</button>
   <button mat-raised-button color='primary' (click)="onLogout()" *ngIf ="userService.isLoggedIn()">LogOut</button>
+
+</mat-toolbar>
+
+
+<!-- //for admin dashbord -->
+<mat-toolbar color='primary' *ngIf ="admin.isLoggedIn">
+  <a mat-button  routerLink="/dashboard" class="title">UCSC Exam Branch</a> 
+  <span class="example-spacer"></span>
+  
+
+  <button mat-raised-button color='primary' >Profile</button>
+  <button mat-raised-button color='primary' (click)="onLogout()" >LogOut</button>
 
 </mat-toolbar>

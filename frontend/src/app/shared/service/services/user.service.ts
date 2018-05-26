@@ -50,15 +50,15 @@ export class UserService {
     return this.http.get<Authorization>('http://localhost:3000/users/authentication',{headers:headers});
   }
 
-  isAuthenticated(){
-    this.getProfile().subscribe(
-      data => {
-        if(data.success){
-          return true;
-        }else{
-          return false;
-        }
-      }
-    );
-  }
+  // isAuthenticated(){
+  //   this.getProfile().subscribe(
+  //     data => {
+  //       if(data.success){
+  //         return true;
+  //       }else{
+  //         return false;
+  //       }
+  //     }
+  //   );
+  // }
 }

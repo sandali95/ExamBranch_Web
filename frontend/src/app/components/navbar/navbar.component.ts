@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { LoginComponent } from '../login/login.component';
-import { UserService } from '../../shared/services/user.service';
+import { UserService } from '../../shared/service/services/user.service';
 import { Router } from '@angular/router';
+import { AdminService } from '../../shared/service/services/admin.service';
 
 @Component({
   selector: 'app-navbar',
@@ -14,10 +15,9 @@ export class NavbarComponent implements OnInit {
   isPopedOpen : boolean = false;
 
   constructor( private dialog : MatDialog, private userService : UserService,
-  private router : Router, public snackBar : MatSnackBar) { }
+  private router : Router, public snackBar : MatSnackBar, private admin : AdminService) { }
 
   ngOnInit() {
-
   }
 
   onLogin(){

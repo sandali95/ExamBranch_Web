@@ -9,12 +9,11 @@ import { AppComponent } from './app.component';
 import { DashbordComponent } from './components/dashbord/dashbord.component';
 import { LoginComponent } from './components/login/login.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { AdminComponent } from './components/admin/admin.component';
-import { UserService } from './shared/services/user.service';
 import { CalenderComponent } from './components/calender/calender.component';
 import { RegistrationComponent } from './components/user/registration/registration.component';
-import { DataService } from './shared/services/data.service';
 import { RepeatExamComponent } from './components/user/repeat-exam/repeat-exam.component';
+import { AdminModule } from './components/admin/admin.module';
+import { ServiceModule } from './shared/service/service.module';
 
 @NgModule({
   declarations: [
@@ -22,22 +21,24 @@ import { RepeatExamComponent } from './components/user/repeat-exam/repeat-exam.c
     DashbordComponent,
     LoginComponent,
     NavbarComponent,
-    AdminComponent,
     CalenderComponent,
     RegistrationComponent,
-    RepeatExamComponent
+    RepeatExamComponent,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    MaterialModule,
+    MaterialModule.forRoot(),
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ServiceModule.forRoot()
+  ],
+  exports:[
   ],
   entryComponents: [ LoginComponent,RegistrationComponent, RepeatExamComponent],
-  providers: [ UserService, DataService ],
+  providers: [  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,9 +1,10 @@
 import { Component, OnInit ,Inject } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { UserService } from '../../shared/services/user.service';
+import { UserService } from '../../shared/service/services/user.service';
 import { MatSnackBar} from '@angular/material';
 import { Router } from '@angular/router';
+import { AdminService } from '../../shared/service/services/admin.service';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +17,7 @@ export class LoginComponent implements OnInit {
   
   constructor(private fb : FormBuilder , private dialogeRef : MatDialogRef<LoginComponent>,
     private userService : UserService , @Inject(MAT_DIALOG_DATA) public data: any, 
-    public snackBar: MatSnackBar, private router : Router) { }
+    public snackBar: MatSnackBar, private router : Router, private adminService : AdminService) { }
 
   ngOnInit() {
     this.loginForm = this.fb.group({
