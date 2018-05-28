@@ -1,0 +1,10 @@
+.news{
+    margin: 10px;
+    background-color: white ;
+    max-height: 400px;
+}
+
+.update{
+    float: right;
+
+}

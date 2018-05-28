@@ -1,3 +1,12 @@
-<p>
-  dashboard works!
-</p>
+<div class="newsfeed" *ngFor="let news of newsfeed" >
+  <mat-card class="news" color='accent' >
+      <mat-card-title>{{news.title}}</mat-card-title>
+      <mat-card-content>{{news.content}}
+              <br>  
+      </mat-card-content>
+      <mat-card-actions >
+        <button mat-button (click)="onEdit(news)"><mat-icon>edit</mat-icon></button>
+        <button mat-button (click)="onDelete(news._id)"><mat-icon>delete</mat-icon></button> 
+      </mat-card-actions>
+  </mat-card>
+</div>

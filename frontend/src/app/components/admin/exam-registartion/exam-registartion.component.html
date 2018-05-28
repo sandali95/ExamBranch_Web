@@ -1,0 +1,52 @@
+<mat-tab-group>
+  <mat-tab label="Post News">
+    <h2>This form is to Post about the new exam.</h2>
+    <form>
+      <mat-form-field class="block">
+        <input matInput placeholder="Heading" type="text">
+      </mat-form-field>
+
+      <mat-form-field class="block">
+        <textarea matInput placeholder="Content" type="text"></textarea>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-select placeholder="Exam Id" [(ngModel)]="selected" name="examid" (change)="newExam(selected)">
+          <mat-option *ngFor="let exam of exams" [value]="exam.id">
+            {{exam.title}}
+          </mat-option>
+          <mat-option [value]="0">Add New Exam</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+    </form>
+  </mat-tab>
+  <!-- end of 1st tab -->
+
+
+  <mat-tab label="Add Examination" [disabled]="disabled">
+    <form>
+      <mat-form-field class="block">
+        <input matInput placeholder="Exam For" type="text">
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </form>
+  </mat-tab>
+  <!-- end of 2nd tab -->
+
+
+  <mat-tab label="Add Subjects" [disabled]="disabled">
+    <app-subjects></app-subjects>
+  </mat-tab>
+  <!-- end of 3rd tab -->
+  
+
+  <mat-tab label="Confirm">
+
+  </mat-tab>
+  </mat-tab-group>

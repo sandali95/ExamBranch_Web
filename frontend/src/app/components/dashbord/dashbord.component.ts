@@ -3,7 +3,6 @@ import { MatDialog, MatSnackBar } from '@angular/material';
 import { RegistrationComponent } from '../user/registration/registration.component';
 import { DataService } from '../../shared/service/services/data.service';
 import { RepeatExamComponent } from '../user/repeat-exam/repeat-exam.component';
-import { AdminService } from '../../shared/service/services/admin.service';
 
 export interface subjects{}
 @Component({
@@ -15,7 +14,7 @@ export class DashbordComponent implements OnInit {
 
   newsfeed : String[] ;
   constructor(private dialoge : MatDialog, private dataService : DataService,
-  public snackBar : MatSnackBar, private admin:AdminService) { }
+  public snackBar : MatSnackBar) { }
 
   ngOnInit() {
     this.getAllNews();
