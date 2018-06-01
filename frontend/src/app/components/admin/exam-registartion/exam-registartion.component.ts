@@ -9,7 +9,6 @@ export class ExamRegistartionComponent implements OnInit {
 
   selected : String;
   disabled : boolean =true;
-  addSubjects_1 : boolean = false;
 
   exams = [
     {id: 'steak-0', title: 'Steak'},
@@ -24,7 +23,6 @@ export class ExamRegistartionComponent implements OnInit {
 
   addSubject(){
     console.log("click");
-    this.addSubjects_1 = true;
   }
 
   newExam(selected){
@@ -35,11 +33,9 @@ export class ExamRegistartionComponent implements OnInit {
 
   }
 
-  onRegister(){
-    //check whether he has add subjects to all years
-    if(this.addSubjects_1){
-      //error
-    }
+  //
+  onConfirm(){
+    
   }
 
 }
