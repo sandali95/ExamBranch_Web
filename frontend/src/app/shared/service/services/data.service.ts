@@ -25,6 +25,16 @@ export class DataService {
 
   constructor(private http : HttpClient) { }
 
+  private subjects : any;
+
+  setSubjects(subjects){
+    this.subjects = subjects;
+  }
+
+  getSubjects(){
+    return this.subjects;
+  }
+  
   getAllNews(){
     let headers = new HttpHeaders();
     headers =headers.set('content-type','application/json');
@@ -44,6 +54,12 @@ export class DataService {
     let headers = new HttpHeaders();
     headers = headers.set('content-type','application/json');
     return this.http.post<news>('http://localhost:3000/exams/register',form,{headers:headers});
+  }
+
+  getAllExams(){
+    let headers = new HttpHeaders();
+    headers =headers.set('content-type','application/json');
+    return this.http.get<any>('http://localhost:3000/exams/getallexams');
   }
 
 }

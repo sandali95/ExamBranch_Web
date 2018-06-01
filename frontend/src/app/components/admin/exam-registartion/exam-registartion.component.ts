@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from '../../../shared/service/services/data.service';
+import { FormBuilder,FormGroup, Validators } from '@angular/forms';
+import { SubjectsComponent } from '../subjects/subjects.component'
 
 @Component({
   selector: 'app-exam-registartion',
@@ -7,35 +10,60 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ExamRegistartionComponent implements OnInit {
 
+  public initTab : FormGroup;
+  public examinationTab : FormGroup;
   selected : String;
   disabled : boolean =true;
 
-  exams = [
-    {id: 'steak-0', title: 'Steak'},
-    {id: 'pizza-1', title: 'Pizza'},
-    {id: 'tacos-2', title: 'Tacos'}
-  ];
+  exams = [];
 
-  constructor() { }
+  constructor(private dataService : DataService, public fb : FormBuilder) { }
 
   ngOnInit() {
+    this.initTab = this.fb.group({
+      heading : ['',Validators.required],
+      content : ['', Validators.required],
+      examid  : ['',Validators.required]
+    });
+
+    this.examinationTab = this.fb.group({
+      examname : ['',Validators.required],
+      date     : ['',Validators.required]
+    });
+
+    this.examIds();
   }
 
-  addSubject(){
-    console.log("click");
+  examIds(){
+    this.dataService.getAllExams().subscribe(
+      data => { this.exams = data.data}
+    )
   }
 
   newExam(selected){
     if(selected == "0"){
       this.disabled = false;
+    }else{
+      this.disabled = true;
     }
-    
-
   }
 
-  //
+  //confirm registartion
   onConfirm(){
-    
+    let exam = {
+      exam : this.examinationTab.value.examname,
+      date : this.examinationTab.value.date,
+      subjects : this.dataService.getSubjects()
+    }
+    console.log(exam);
+  }
+
+  onSave(){
+    console.log(this.initTab);
+  }
+
+  onSaveExam(){
+
   }
 
 }

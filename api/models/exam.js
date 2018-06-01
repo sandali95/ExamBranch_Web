@@ -1,30 +1,42 @@
 const mongoose = require('mongoose');
 
+const yearSchema = mongoose.Schema({
+    is : {
+        type : [],
+        required  : true
+    },
+    cs : {
+        type : [],
+        required  : true
+    },
+    se : {
+        type : [],
+        required : true
+    },
+    optional : {
+        type : [],
+        required : false
+    }
+});
+
 const SubjectSchema = mongoose.Schema({
     year1 : {
-        type : [],
+        type : yearSchema,
         required : true,
     },
     year2 :{
-        type : [],
+        type : yearSchema,
         required : true,
     },
     year3 : {
-        type : [],
-        required : true,
-    },
-    year3_optional : {
-        type : [],
+        type : yearSchema,
         required : true,
     },
     year4 : {
-        type : [],
+        type : yearSchema,
         required : true,
     },
-    year4_optional : {
-        type : [],
-        required : true,
-    }
+    
 });
 
 const StudentSchema = mongoose.Schema({
@@ -58,10 +70,16 @@ const ExamSchema = mongoose.Schema({
 
 const Exam = module.exports = mongoose.model('exams',ExamSchema);
 
+//getAllExams
+module.exports.getAll = (callback)=>{
+    Exam.find({},{exam:1},callback);
+}
+
 module.exports.addExam = (exam,callback)=>{
    Exam.create(exam,callback);
 }
 
+//register students to the exam
 module.exports.updateExam = (exam_id,student,callback)=>{
     let _id = exam_id;
     Exam.update(

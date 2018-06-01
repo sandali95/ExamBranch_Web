@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from '../../../shared/service/services/data.service';
 
 @Component({
   selector: 'app-subjects',
@@ -57,7 +58,7 @@ export class SubjectsComponent implements OnInit {
     subjects: []
   }
 
-  constructor() { }
+  constructor(private dataService:DataService) { }
 
   ngOnInit() {
   }
@@ -114,6 +115,7 @@ export class SubjectsComponent implements OnInit {
         optional: this.op_4.subjects
       }
     }
-    return subjects;
+    console.log(subjects);
+    this.dataService.setSubjects(subjects);
   }
 }
