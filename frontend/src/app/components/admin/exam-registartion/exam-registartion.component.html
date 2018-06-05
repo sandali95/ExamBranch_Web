@@ -11,7 +11,14 @@
       </mat-form-field>
 
       <mat-form-field>
-        <mat-select placeholder="Exam Id" [(ngModel)]="selected" name="examid" (change)="newExam(selected)" formControlName="examid">
+        <mat-select [(value)]="studenttype" formControlName="studenttype" placeholder="Student Category">
+          <mat-option value="undergraduate" >Undergraduate</mat-option>
+          <mat-option value="postgraduate">Postgraduate</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-select placeholder="Exam Id" [(ngModel)]="examId" name="examid" (change)="newExam(examId)" formControlName="examid">
           <mat-option *ngFor="let exam of exams" [value]="exam._id">
             {{exam.exam}}
           </mat-option>
@@ -45,9 +52,9 @@
     <app-subjects></app-subjects>
   </mat-tab>
   <!-- end of 3rd tab -->
-  
 
-  <mat-tab label="Confirm" [disabled]="disabled">
+
+  <mat-tab label="Confirm"sss>
     <button mat-raised-button color="primary" (click)="onConfirm()">Confirm</button>
   </mat-tab>
-  </mat-tab-group>
+</mat-tab-group>

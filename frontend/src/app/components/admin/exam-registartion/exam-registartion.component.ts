@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../../../shared/service/services/data.service';
-import { FormBuilder,FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SubjectsComponent } from '../subjects/subjects.component'
+import { AdminService } from '../../../shared/service/services/admin.service';
 
 @Component({
   selector: 'app-exam-registartion',
@@ -10,59 +11,79 @@ import { SubjectsComponent } from '../subjects/subjects.component'
 })
 export class ExamRegistartionComponent implements OnInit {
 
-  public initTab : FormGroup;
-  public examinationTab : FormGroup;
-  selected : String;
-  disabled : boolean =true;
+  public initTab: FormGroup;
+  public examinationTab: FormGroup;
+  examId: String;
+  studenttype: String;
+  disabled: boolean = true;
 
   exams = [];
 
-  constructor(private dataService : DataService, public fb : FormBuilder) { }
+  constructor(private dataService: DataService, private adminService: AdminService, public fb: FormBuilder) { }
 
   ngOnInit() {
     this.initTab = this.fb.group({
-      heading : ['',Validators.required],
-      content : ['', Validators.required],
-      examid  : ['',Validators.required]
+      heading: ['', Validators.required],
+      content: ['', Validators.required],
+      examid: ['', Validators.required],
+      studenttype: ['', Validators.required]
     });
 
     this.examinationTab = this.fb.group({
-      examname : ['',Validators.required],
-      date     : ['',Validators.required]
+      examname: ['', Validators.required],
+      date: ['', Validators.required]
     });
 
     this.examIds();
   }
 
-  examIds(){
+  examIds() {
     this.dataService.getAllExams().subscribe(
-      data => { this.exams = data.data}
+      data => { this.exams = data.data }
     )
   }
 
-  newExam(selected){
-    if(selected == "0"){
+  newExam(examId) {
+    if (examId == "0") {
       this.disabled = false;
-    }else{
+    } else {
       this.disabled = true;
     }
+    console.log(this.disabled);
   }
 
   //confirm registartion
-  onConfirm(){
-    let exam = {
-      exam : this.examinationTab.value.examname,
-      date : this.examinationTab.value.date,
-      subjects : this.dataService.getSubjects()
-    }
-    console.log(exam);
+  onConfirm() {
+    let post = {
+      title: this.initTab.value.heading,
+      content: this.initTab.value.content,
+      examid: this.initTab.value.examid,
+      studenttype: this.initTab.value.studenttype
+    };
+
+    if(this.disabled){
+      this.adminService.postNews(post).subscribe(   //post news
+        data=>{console.log(data);}
+      ); 
+    }else{
+      console.log(this.dataService.getSubjects());
+      let exam = {
+        exam: this.examinationTab.value.examname,
+        date: this.examinationTab.value.date,
+        subjects: this.dataService.getSubjects()
+      }
+      this.adminService.postExam(exam).subscribe(
+        data=>{console.log(data);}
+      )
+    } 
   }
 
-  onSave(){
-    console.log(this.initTab);
+  //save post
+  onSave() {
+    console.log(this.initTab.value);
   }
 
-  onSaveExam(){
+  onSaveExam() {
 
   }
 

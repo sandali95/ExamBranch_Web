@@ -13,10 +13,11 @@ router.post('/save', (req, res) => {
         date: req.body.date,
         subjects: req.body.subjects
     }
+    console.log(exam);
 
     Exam.addExam(exam, (error, data) => {
         if (error) {
-            res.status(500).json({
+            res.json({
                 success: false,
                 message: error,
             });

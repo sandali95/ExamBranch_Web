@@ -53,7 +53,7 @@ export class DataService {
   registration(form){
     let headers = new HttpHeaders();
     headers = headers.set('content-type','application/json');
-    return this.http.post<news>('http://localhost:3000/exams/register',form,{headers:headers});
+    return this.http.post('http://localhost:3000/exams/register',form,{headers:headers});
   }
 
   getAllExams(){

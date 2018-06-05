@@ -8,16 +8,15 @@ const router = express.Router();
 //insert news to the database
 router.post('/savenews', (req,res)=>{
     let news = {
-        exam_id : req.body.exam_id,
+        exam_id : req.body.examid,
         title   : req.body.title,
         content : req.body.content,
-        student : req.body.student//whether undergraduate or postgrdauate related exam    
+        student : req.body.studenttype//whether undergraduate or postgrdauate related exam    
     }
-    console.log(req.body.title);
 
     newsItem.saveNews(news, (err,data)=>{
         if(err){
-            res.status(500).json({
+            res.json({
                 success : false,
                 message : err,
             });
