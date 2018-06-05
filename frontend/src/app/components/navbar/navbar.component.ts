@@ -41,8 +41,7 @@ export class NavbarComponent implements OnInit {
   }
 
   onlogout(){
-    this.admin.isLoggedIn = false;
-    this.admin.loggedAsAdmin = false;
+    this.admin.logOut();
     this.snackBar.open('LoggedOut !','',{duration : 2000});
     this.router.navigate(['']);
   }

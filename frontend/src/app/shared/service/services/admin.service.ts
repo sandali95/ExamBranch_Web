@@ -23,10 +23,12 @@ export class AdminService {
    }
  
    logOut(){
+    this.loggedAsAdmin = false;
      localStorage.clear();
    }
  
    storeUser(token){
+     this.loggedAsAdmin = true;
      localStorage.setItem('token',token);
    }
 

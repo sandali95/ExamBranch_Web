@@ -11,7 +11,7 @@
 
 
 <!-- //for admin dashbord -->
-<mat-toolbar color='primary' *ngIf ="admin.isLoggedIn && admin.loggedAsAdmin ">
+<mat-toolbar color='primary' *ngIf ="admin.isLoggedIn() && admin.loggedAsAdmin ">
   <a mat-button  routerLink="/admin/newsfeed" class="title">UCSC Exam Branch</a> 
   <span class="example-spacer"></span>
   
