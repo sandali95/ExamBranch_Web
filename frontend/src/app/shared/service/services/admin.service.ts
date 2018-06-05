@@ -5,18 +5,30 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 export class AdminService {
   public test : String;
   public loggedAsAdmin :boolean = false;
-  isLoggedIn : boolean = false;
 
   constructor(private http : HttpClient) { }
 
-  onLogin(form): boolean{
-    if(form.username == 'admin' && form.password == 'admin'){
-      this.isLoggedIn = true;
-      return true;
-    }else{
-      return false;
-    }
+  authenticate(user){
+    let headers = new HttpHeaders();
+    headers =headers.set('content-type','application/json');
+    return this.http.post<any>('http://localhost:3000/users/login',user,{headers:headers});
   }
+
+  isLoggedIn(){
+    if(localStorage.getItem('token') == null){
+     return false;
+    }else{
+     return true;
+    } 
+   }
+ 
+   logOut(){
+     localStorage.clear();
+   }
+ 
+   storeUser(token){
+     localStorage.setItem('token',token);
+   }
 
   //post news tthe database so that it can be displayed in the newsfeed
   postNews(news){
@@ -26,11 +38,19 @@ export class AdminService {
   }
 
   postExam(exam){
-    console.log(exam);
     let headers = new HttpHeaders();
     headers = headers.set('content-type','application/json');
     return this.http.post<any>('http://localhost:3000/exams/save',exam,{headers:headers});
   }
+
+  deleteNews(newsid){
+    let headers = new HttpHeaders();
+    headers = headers.set('content-type','application/json');
+    let params = new HttpParams();
+    params = params.append('newsid',newsid);
+    return this.http.get<any>('http://localhost:3000/deletenews',{headers:headers, params:params});
+  }
+
 
 
 }

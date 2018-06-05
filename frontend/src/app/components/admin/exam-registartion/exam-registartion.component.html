@@ -1,60 +1,62 @@
-<mat-tab-group>
-  <mat-tab label="Post News">
-    <h2>This form is to Post about the new exam.</h2>
-    <form [formGroup]="initTab">
-      <mat-form-field class="block">
-        <input matInput placeholder="Heading" type="text" formControlName="heading">
-      </mat-form-field>
-
-      <mat-form-field class="block">
-        <textarea matInput placeholder="Content" type="text" formControlName="content"></textarea>
-      </mat-form-field>
-
-      <mat-form-field>
-        <mat-select [(value)]="studenttype" formControlName="studenttype" placeholder="Student Category">
-          <mat-option value="undergraduate" >Undergraduate</mat-option>
-          <mat-option value="postgraduate">Postgraduate</mat-option>
-        </mat-select>
-      </mat-form-field>
-
-      <mat-form-field>
-        <mat-select placeholder="Exam Id" [(ngModel)]="examId" name="examid" (change)="newExam(examId)" formControlName="examid">
-          <mat-option *ngFor="let exam of exams" [value]="exam._id">
-            {{exam.exam}}
-          </mat-option>
-          <mat-option [value]="0">Add New Exam</mat-option>
-        </mat-select>
-      </mat-form-field>
-      <button mat-raised-button color="primary" (click)="onSave()" [disabled]="initTab.invalid">Save</button>
-    </form>
-  </mat-tab>
-  <!-- end of 1st tab -->
-
-
-  <mat-tab label="Add Examination" [disabled]="disabled">
-    <form [formGroup]="examinationTab">
-      <mat-form-field class="block">
-        <input matInput placeholder="Exam For" type="text" formControlName="examname">
-      </mat-form-field>
-
-      <mat-form-field>
-        <input matInput [matDatepicker]="picker" placeholder="Choose a date" formControlName="date">
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
-      </mat-form-field>
-      <button mat-raised-button color="primary" (click)="onSaveExam()" [disabled]="examinationTab.invalid">Save</button>
-    </form>
-  </mat-tab>
-  <!-- end of 2nd tab -->
-
-
-  <mat-tab label="Add Subjects" [disabled]="disabled">
-    <app-subjects></app-subjects>
-  </mat-tab>
-  <!-- end of 3rd tab -->
-
-
-  <mat-tab label="Confirm"sss>
-    <button mat-raised-button color="primary" (click)="onConfirm()">Confirm</button>
-  </mat-tab>
-</mat-tab-group>
+<mat-card style="margin-top: 10px;">
+  <mat-tab-group>
+    <mat-tab label="Post News">
+      <h2>This form is to Post about the new exam.</h2>
+      <form [formGroup]="initTab">
+        <mat-form-field class="block">
+          <input matInput placeholder="Heading" type="text" formControlName="heading">
+        </mat-form-field>
+  
+        <mat-form-field class="block">
+          <textarea matInput placeholder="Content" type="text" formControlName="content"></textarea>
+        </mat-form-field>
+  
+        <mat-form-field>
+          <mat-select [(value)]="studenttype" formControlName="studenttype" placeholder="Student Category">
+            <mat-option value="undergraduate" >Undergraduate</mat-option>
+            <mat-option value="postgraduate">Postgraduate</mat-option>
+          </mat-select>
+        </mat-form-field>
+  
+        <mat-form-field>
+          <mat-select placeholder="Exam Id" [(ngModel)]="examId" name="examid" (change)="newExam(examId)" formControlName="examid">
+            <mat-option *ngFor="let exam of exams" [value]="exam._id">
+              {{exam.exam}}
+            </mat-option>
+            <mat-option [value]="0">Add New Exam</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <button mat-raised-button color="primary" (click)="onSave()" [disabled]="initTab.invalid">Save</button>
+      </form>
+    </mat-tab>
+    <!-- end of 1st tab -->
+  
+  
+    <mat-tab label="Add Examination" [disabled]="disabled">
+      <form [formGroup]="examinationTab">
+        <mat-form-field class="block">
+          <input matInput placeholder="Exam For" type="text" formControlName="examname">
+        </mat-form-field>
+  
+        <mat-form-field>
+          <input matInput [matDatepicker]="picker" placeholder="Choose a date" formControlName="date">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <button mat-raised-button color="primary" (click)="onSaveExam()" [disabled]="examinationTab.invalid">Save</button>
+      </form>
+    </mat-tab>
+    <!-- end of 2nd tab -->
+  
+  
+    <mat-tab label="Add Subjects" [disabled]="disabled">
+      <app-subjects></app-subjects>
+    </mat-tab>
+    <!-- end of 3rd tab -->
+  
+  
+    <mat-tab label="Confirm"sss>
+      <button mat-raised-button color="primary" (click)="onConfirm()">Confirm</button>
+    </mat-tab>
+  </mat-tab-group>
+</mat-card>

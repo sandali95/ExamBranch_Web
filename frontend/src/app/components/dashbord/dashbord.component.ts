@@ -42,6 +42,7 @@ export class DashbordComponent implements OnInit {
     }else if(news.student == 'repeat'){ // for repeat exam forms
       this.dataService.getExam(news.exam_id).subscribe(
         data=>{
+          console.log(data);
           this.dialoge.open(RepeatExamComponent ,{
             width : '1000px',
             data  : {

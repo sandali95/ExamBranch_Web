@@ -76,9 +76,8 @@ router.post('/updatenews', (req,res)=>{
     });
 });
 
-router.get('/deletenews/:id', (req,res)=>{
-    let id = req.params.id;
-    console.log(id);
+router.get('/deletenews', (req,res)=>{
+    let id = req.query.newsid;
     newsItem.deleteNews(id, (error,data)=>{
         if(error){
             res.status(500).json({

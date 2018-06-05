@@ -13,6 +13,7 @@ import { CalenderComponent } from './components/calender/calender.component';
 import { RegistrationComponent } from './components/user/registration/registration.component';
 import { RepeatExamComponent } from './components/user/repeat-exam/repeat-exam.component';
 import { AdminModule } from './components/admin/admin.module';
+import { AdminLoginComponent } from './components/admin-login/admin-login.component';
 import { ServiceModule } from './shared/service/service.module';
 
 @NgModule({
@@ -20,6 +21,7 @@ import { ServiceModule } from './shared/service/service.module';
     AppComponent,
     DashbordComponent,
     LoginComponent,
+    AdminLoginComponent,
     NavbarComponent,
     CalenderComponent,
     RegistrationComponent,

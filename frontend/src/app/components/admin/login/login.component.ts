@@ -9,7 +9,7 @@ import { MatSnackBar } from '@angular/material';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class AdminLoginComponent implements OnInit {
 
   public adminlogin : FormGroup;
   constructor(private adminService : AdminService, private fb : FormBuilder,
@@ -23,14 +23,14 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  onSubmit(form){
-    let value = this.adminService.onLogin(form.value);
-    if(value){
-      this.adminService.isLoggedIn = true;
-      this.router.navigate(['/admin/newsfeed']);
-      this.snackbar.open('Logged In','',{duration : 1000});
-    }
-  }
+  // onSubmit(form){
+  //   let value = this.adminService.onLogin(form.value);
+  //   if(value){
+  //     this.adminService.isLoggedIn = true;
+  //     this.router.navigate(['/admin/newsfeed']);
+  //     this.snackbar.open('Logged In','',{duration : 1000});
+  //   }
+  // }
 
   
 

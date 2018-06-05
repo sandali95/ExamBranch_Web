@@ -66,13 +66,15 @@ export class ExamRegistartionComponent implements OnInit {
         data=>{console.log(data);}
       ); 
     }else{
-      console.log(this.dataService.getSubjects());
+      this.adminService.postNews(post).subscribe(   //post news
+        data=>{console.log(data);}
+      ); 
       let exam = {
         exam: this.examinationTab.value.examname,
         date: this.examinationTab.value.date,
         subjects: this.dataService.getSubjects()
       }
-      this.adminService.postExam(exam).subscribe(
+      this.adminService.postExam(exam).subscribe(  //save new exams
         data=>{console.log(data);}
       )
     } 
