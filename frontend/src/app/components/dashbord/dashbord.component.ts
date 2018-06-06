@@ -28,13 +28,14 @@ export class DashbordComponent implements OnInit {
       console.log(news.exam_id)
       this.dataService.getExam(news.exam_id).subscribe(
         data=>{
+          console.log(data);
           this.dialoge.open(RegistrationComponent ,{
             width : '1000px',
             data  : {
               id    : data.exam_id,
               title : news.title,
-              year3 : data.year3_optional,
-              year4 : data.year4_optional,
+              year3 : data.year3,
+              year4 : data.year4,
               subjects :[]
             } //send userdetails for auto completion
           });    
@@ -51,8 +52,8 @@ export class DashbordComponent implements OnInit {
               subjects :[],
               year1 : data.year1,
               year2 : data.year2,
-              year3 : data.year3.concat(data.year3_optional),
-              year4 : data.year4.concat(data.year4_optional)
+              year3 : data.year3,
+              year4 : data.year4
             } //send userdetails for auto completion
           });   
         });  

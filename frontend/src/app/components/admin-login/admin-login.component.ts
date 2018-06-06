@@ -36,7 +36,7 @@ export class AdminLoginComponent implements OnInit {
           this.snackbar.open('Logged In!', '', { duration: 2000, });
         } else {
           this.adminlogin.reset();
-          this.snackbar.open('Invalida Credentials!', '', { duration: 2000, });
+          this.snackbar.open('Invalid Credentials!', '', { duration: 2000, });
         }
       }
     );

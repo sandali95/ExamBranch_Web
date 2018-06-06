@@ -15,7 +15,6 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this.getAllNews();
-    console.log(this.newsfeed);
   }
 
 

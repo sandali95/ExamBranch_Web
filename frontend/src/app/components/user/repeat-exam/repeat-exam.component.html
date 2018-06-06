@@ -9,7 +9,7 @@
       
     <div class="registration-container">
         <form [formGroup]="repeatExamForm"  class="registration" >
-            <mat-radio-group formControName="field">
+            <mat-radio-group [(ngModel)]="field" formControlName="field">
               <mat-radio-button value="cs">Computer Science</mat-radio-button>
               <mat-radio-button value="is">Information Systems</mat-radio-button>
               <mat-radio-button value="se">Software Engineering</mat-radio-button>
@@ -47,10 +47,10 @@
   
             <mat-form-field >
               <mat-select placeholder="Year" [(ngModel)]="year" formControlName="year">
-                <mat-option [value]="1">1st Year</mat-option>
-                <mat-option [value]="2">2nd Year </mat-option>
-                <mat-option [value]="3">3rd Year</mat-option>
-                <mat-option [value]="4">4th Year</mat-option>
+                <mat-option value="1">1st Year</mat-option>
+                <mat-option value="2">2nd Year </mat-option>
+                <mat-option value="3">3rd Year</mat-option>
+                <mat-option value="4">4th Year</mat-option>
               </mat-select>
             </mat-form-field>
   

@@ -24,7 +24,7 @@ export class AdminService {
  
    logOut(){
     this.loggedAsAdmin = false;
-     localStorage.clear();
+    localStorage.clear();
    }
  
    storeUser(token){
