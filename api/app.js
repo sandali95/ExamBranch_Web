@@ -9,6 +9,8 @@ const config = require('./config/database');
 const userRoutes = require('./routes/users');
 const newsRoutes = require('./routes/news');
 const examRoutes = require('./routes/exams');
+const studentRoutes = require('./routes/students');
+
 const app = express();
 
 //Init database connection
@@ -41,6 +43,9 @@ app.use('/users',userRoutes);
 
 //Exam routes
 app.use('/exams',examRoutes);
+
+//Student routes
+app.use('/students',studentRoutes);
 
 
 module.exports = app ;

@@ -70,7 +70,7 @@ const ExamSchema = mongoose.Schema({
 
 const Exam = module.exports = mongoose.model('exams',ExamSchema);
 
-//getAllExams
+//getAllExams - only the exam name and its ID
 module.exports.getAll = (callback)=>{
     Exam.find({},{exam:1},callback);
 }

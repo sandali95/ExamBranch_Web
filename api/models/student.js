@@ -19,7 +19,7 @@ const ExamSchema = mongoose.Schema({
     }
 });
 
-const userSchema = mongoose.Schema({
+const StudentSchema = mongoose.Schema({
     indexNo : {
         type : String,
         required : true,
@@ -27,18 +27,6 @@ const userSchema = mongoose.Schema({
     registrationNo : {
         type : String,
         required : true,
-    },
-    username : {
-        type : String,
-        required : true,
-    },
-    password : {
-        type : String,
-        required : true,
-    },
-    email : {
-        type : String,
-        required : true, 
     },
     field : {
         type : String,
@@ -50,26 +38,19 @@ const userSchema = mongoose.Schema({
     }
 });
 
-const User = module.exports = mongoose.model('users', userSchema);
+const Student = module.exports = mongoose.model('Student',StudentSchema);
 
-//find user by email
-module.exports.findRegNo = (regno,callback)=>{
-    User.find({registrationNo:regno},callback);
+//add new students to the system
+module.exports.addStudent = (student,callback)=>{
+    Student.create(student, callback);
 }
 
-module.exports.addUser = (newUser,callback)=>{
-   User.create(newUser,callback);
-}
-
-//get the registered exams for a given _id
-module.exports.getRegisteredExams = (_id,callback)=>{
-    User.find({_id : _id},{registrations:1},callback)
-}
-
+//add exam registrations to the student schema
 module.exports.addExam = (student_id,exam,callback)=>{
-    User.update(
+    Student.update(
         {_id : student_id},
         {$push:{'registrations':exam}},
         callback
     );
 }
+

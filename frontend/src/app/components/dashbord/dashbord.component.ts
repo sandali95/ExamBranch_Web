@@ -49,7 +49,7 @@ export class DashbordComponent implements OnInit {
             data  : {
               id    : data.exam_id,
               title : news.title,
-              subjects :[],
+              subjects : [],
               year1 : data.year1,
               year2 : data.year2,
               year3 : data.year3,

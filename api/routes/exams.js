@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 
 const Exam = require('../models/exam');
+const Student = require('../models/user');
 
 const router = express.Router();
 
@@ -13,7 +14,6 @@ router.post('/save', (req, res) => {
         date: req.body.date,
         subjects: req.body.subjects
     }
-    console.log(exam);
 
     Exam.addExam(exam, (error, data) => {
         if (error) {
@@ -31,16 +31,24 @@ router.post('/save', (req, res) => {
 
 });
 
-//register to the exams
+//register to exams
 router.post('/register', (req, res) => {
     let exam_id = req.body.id;
+    let student_id = req.body.userid;
     let student = {
-        indexno: req.body.indexno,
+        indexno : req.body.indexno,
         registration: req.body.registration,
         fullname: req.body.fullname,
-        email: req.body.email,
-        year: req.body.year,
+        email   : req.body.email,
+        year    : req.body.year,
         subjects: req.body.subjects
+    }
+
+    let exam = {
+        examid : req.body.id,
+        exam   : req.body.exam,
+        date   : req.body.date ,
+        subjects : req.body.subjects
     }
 
     Exam.updateExam(exam_id, student, (error, data) => {
@@ -55,7 +63,15 @@ router.post('/register', (req, res) => {
                 message: 'Student is registered',
             });
         }
-    })
+    });
+
+    Student.addExam(student_id, exam, (error,data)=>{
+        if (error) {
+            console.log(error)
+        } else {
+            console.log('successful');
+        }
+    });
 });
 
 //get all the registations for a given exam id

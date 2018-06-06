@@ -5,6 +5,7 @@ export interface token{
   success : boolean;
   message : String;
   token   : String;
+  user    : any;
 }
 
 export interface Authorization{
@@ -37,8 +38,14 @@ export class UserService {
     localStorage.clear();
   }
 
-  storeUser(token){
+  getUser(){
+    return JSON.parse(localStorage.getItem('user'));
+  }
+
+  storeUser(token,user){
     localStorage.setItem('token',token);
+    localStorage.setItem('user',user);
+    console.log(JSON.parse(localStorage.getItem('user')));
   }
 
   getProfile(){

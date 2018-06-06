@@ -17,7 +17,7 @@ export class RegistrationComponent implements OnInit {
   checked: false;
   sub  : String[] = [];
   constructor(private dialogeRef: MatDialogRef<RegistrationComponent>, @Inject(MAT_DIALOG_DATA) public data: any,
-    private fb: FormBuilder, private dataService: DataService) { }
+    private fb: FormBuilder, private dataService: DataService, private userService: UserService) { }
 
   ngOnInit() {
     console.log(this.data);
@@ -39,7 +39,9 @@ export class RegistrationComponent implements OnInit {
 
   onRegister(registrationForm) {
     let form = {
+      userid  : this.userService.getUser().userid,
       id      : this.data.id,
+      exam    : this.data.title,
       indexno : this.registrationForm.value.indexno,
       registration: this.registrationForm.value.regno,
       fullname: this.registrationForm.value.name,

@@ -11,10 +11,10 @@ const router = express.Router();
 
 //user register
 router.post('/register',(req,res)=>{
-    User.findEmail(req.body.email,(err,data)=>{
+    User.findRegNo(req.body.regno,(err,data)=>{
         if(data.length >=1){
             return res.status(402).json({
-                message : "Email address is already in use"
+                message : "Registration No is already in use"
             });
         }
     })
@@ -23,11 +23,15 @@ router.post('/register',(req,res)=>{
         if(err) {
             return res.status(500).json(
                 {error : err}
-            )
+            );
         }else{
             let newUser = {
-                email : req.body.email,
-                password : hash
+                indexNo : req.body.indexno,
+                registrationNo : req.body.regno,
+                username : req.body.username,
+                password : hash,
+                email    : req.body.email,
+                field    : req.body.field,
             }
             User.addUser(newUser,(err,data)=>{
                 if(err){
@@ -52,17 +56,17 @@ router.post('/register',(req,res)=>{
 
 //user authentication without bcrypt
 router.post('/login', (req,res)=>{
-    User.findEmail(req.body.email, (err,user)=>{
+    User.findRegNo(req.body.regno, (err,user)=>{
         if(user.length<1){
             return res.json({
                 success : false,
-                message : 'No user exists for the Email'
+                message : 'No user exists for the Registration No'
             });
         }else{
             bcrypt.compare(req.body.password , user[0].password,(err,result)=>{
                 if(err) throw err ;
                 const token = jwt.sign({
-                    email  : user[0].email,
+                    regno  : user[0].registrationNo,
                     userId : user[0]._id
                 },
                 config.secret,
@@ -74,8 +78,12 @@ router.post('/login', (req,res)=>{
                         message : 'Authentication successful',
                         token   : `Bearer ${token}`,
                         user    : {
+                            userid   : user[0]._id,
                             username : user[0].username,
-                            email    : user[0].email
+                            regno    : user[0].registrationNo,
+                            indexno  : user[0].indexNo,
+                            email    : user[0].email,
+                            field    : user[0].field
                         }
                     });
                 }else{
@@ -127,5 +135,23 @@ function verifyToken(req, res, next) {
     }
   
 }
+
+router.get('/regsiteredexams',(req,res)=>{
+    let _id = req.query.userid;
+    User.getRegisteredExams(_id, (error,data)=>{
+        if(error) {
+            res.json({
+                success : false,
+                message : error,
+            });
+        }else{
+            res.status(200).json({
+                success : true,
+                message : 'Exam Registration Details',
+                registrations : data,
+            });
+        }
+    });
+});
 
 module.exports = router ;
