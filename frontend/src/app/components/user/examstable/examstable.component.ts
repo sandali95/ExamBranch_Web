@@ -24,7 +24,7 @@ export class ExamstableComponent implements OnInit {
   getData(){
     this.dataService.getRegisteredExams(this.user.userid).subscribe(
       data=>{ 
-        console.log(data.registrations[0]);this.dataSource = data.registrations}
+        console.log(data.registrations);this.dataSource = data.registrations}
     );
   }
 
