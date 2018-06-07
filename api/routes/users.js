@@ -56,6 +56,7 @@ router.post('/register',(req,res)=>{
 
 //user authentication without bcrypt
 router.post('/login', (req,res)=>{
+    console.log(req.body);
     User.findRegNo(req.body.regno, (err,user)=>{
         if(user.length<1){
             return res.json({
@@ -83,7 +84,7 @@ router.post('/login', (req,res)=>{
                             regno    : user[0].registrationNo,
                             indexno  : user[0].indexNo,
                             email    : user[0].email,
-                            field    : user[0].field
+                            field    : user[0].field,
                         }
                     });
                 }else{
@@ -137,6 +138,7 @@ function verifyToken(req, res, next) {
 }
 
 router.get('/regsiteredexams',(req,res)=>{
+    console.log(req.query.userid);
     let _id = req.query.userid;
     User.getRegisteredExams(_id, (error,data)=>{
         if(error) {
@@ -148,7 +150,7 @@ router.get('/regsiteredexams',(req,res)=>{
             res.status(200).json({
                 success : true,
                 message : 'Exam Registration Details',
-                registrations : data,
+                registrations : data[0].registrations
             });
         }
     });

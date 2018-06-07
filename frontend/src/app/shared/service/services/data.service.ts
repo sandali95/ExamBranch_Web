@@ -62,4 +62,13 @@ export class DataService {
     return this.http.get<any>('http://localhost:3000/exams/getallexams');
   }
 
+  //get all the registered exams for a given student id
+  getRegisteredExams(userid){
+    let headers = new HttpHeaders();
+    headers = headers.set('content-type','application/json');
+    let params = new HttpParams();
+    params = params.append('userid',userid);
+    return this.http.get<any>('http://localhost:3000/users/regsiteredexams',{headers:headers, params:params});
+  }
+
 }

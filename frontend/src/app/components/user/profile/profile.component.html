@@ -1,3 +1,43 @@
-<p>
-  profile works!
-</p>
+<div class="column" style="float: left;">
+    <mat-card>
+        <mat-toolbar color="secondary">
+            About Me
+            <span class="example-spacer"></span>
+            <button mat-icon-button (click)="onEdit()">
+                <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button (click)="onSave()" [disabled]="!profileform.valid">
+                <mat-icon>save</mat-icon>
+            </button>
+        </mat-toolbar>
+        <mat-card-content style="margin-top: 25px;">
+            <form [formGroup]="profileform">
+                <mat-form-field class="block">
+                    <input matInput placeholder="User Name" formControlName="username">
+                </mat-form-field>
+                <mat-form-field class="block">
+                    <input matInput placeholder="Registration no" formControlName="regno">
+                </mat-form-field>
+                <mat-form-field class="block">
+                    <input matInput placeholder="Index No" formControlName="indexno">
+                </mat-form-field>
+                <mat-form-field class="block">
+                    <input matInput placeholder="Email Address" formControlName="email">
+                </mat-form-field>
+                <mat-form-field class="block">
+                    <input matInput placeholder="Field" formControlName="field">
+                </mat-form-field>
+            </form>
+        </mat-card-content>
+    </mat-card>
+</div>
+
+<div class="column" style="float: right">
+    <mat-card>
+        <mat-toolbar color="secondary">Exam Registrations</mat-toolbar>
+        <mat-card-content style="margin-top: 25px;">
+            <app-examstable></app-examstable>
+        </mat-card-content>
+    </mat-card>
+
+</div>

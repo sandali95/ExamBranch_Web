@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FlexLayoutModule } from "@angular/flex-layout";
 import { MaterialModule } from './shared/material/material.module';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -35,7 +36,8 @@ import { ServiceModule } from './shared/service/service.module';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    ServiceModule.forRoot()
+    ServiceModule.forRoot(),
+    FlexLayoutModule
   ],
   exports:[
   ],

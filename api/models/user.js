@@ -63,7 +63,7 @@ module.exports.addUser = (newUser,callback)=>{
 
 //get the registered exams for a given _id
 module.exports.getRegisteredExams = (_id,callback)=>{
-    User.find({_id : _id},{registrations:1},callback)
+    User.find({_id : _id},{_id:0,registrations:1},callback)
 }
 
 module.exports.addExam = (student_id,exam,callback)=>{
