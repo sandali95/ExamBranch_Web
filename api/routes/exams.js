@@ -50,7 +50,7 @@ router.post('/register', (req, res) => {
         date   : req.body.date ,
         subjects : req.body.subjects
     }
-
+    
     Exam.updateExam(exam_id, student, (error, data) => {
         if (error) {
             res.status(500).json({

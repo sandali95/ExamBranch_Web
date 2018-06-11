@@ -47,6 +47,10 @@ const userSchema = mongoose.Schema({
     registrations : {
         type : [ExamSchema],
         required : false,
+    },
+    registerdExams : {
+        type : [ String ],
+        required : false
     }
 });
 
@@ -63,13 +67,15 @@ module.exports.addUser = (newUser,callback)=>{
 
 //get the registered exams for a given _id
 module.exports.getRegisteredExams = (_id,callback)=>{
-    User.find({_id : _id},{_id:0,registrations:1},callback)
+    User.find({_id : _id},{_id:0,registrations:1,registerdExams:1},callback)
 }
 
 module.exports.addExam = (student_id,exam,callback)=>{
     User.update(
         {_id : student_id},
-        {$push:{'registrations':exam}},
+        {$push:{'registrations':exam, 'registerdExams':exam.examid}},
         callback
     );
 }
+
+

@@ -4,9 +4,9 @@
 }
 
 .column-2{
-    float: right;
+    float: left;
     align-content: center;
-    width: 
+    width: 15%;
 }
 
 .column-right{

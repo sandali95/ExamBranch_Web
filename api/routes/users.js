@@ -138,7 +138,6 @@ function verifyToken(req, res, next) {
 }
 
 router.get('/regsiteredexams',(req,res)=>{
-    console.log(req.query.userid);
     let _id = req.query.userid;
     User.getRegisteredExams(_id, (error,data)=>{
         if(error) {
@@ -156,4 +155,28 @@ router.get('/regsiteredexams',(req,res)=>{
     });
 });
 
+//check whether the student is already registered here
+router.get('/checkregistry', (req,res)=>{
+    let _id =  req.query.userid;
+    let examid = req.query.examid;
+    User.getRegisteredExams(_id, (error,data)=>{
+        if(error) {
+           console.log(error);
+        }else{
+            if(data[0].registerdExams.length<0){
+                console.log('true');res.status(200).json({
+                    value : true
+                });
+            }else if( data[0].registerdExams.includes(examid)){
+                res.status(200).json({
+                    value : false
+                });
+            }else{
+                res.status(200).json({
+                    value : true
+                });
+            }
+        }
+    });
+});
 module.exports = router ;

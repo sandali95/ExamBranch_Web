@@ -53,7 +53,7 @@ export class DataService {
   registration(form){
     let headers = new HttpHeaders();
     headers = headers.set('content-type','application/json');
-    return this.http.post('http://localhost:3000/exams/register',form,{headers:headers});
+    return this.http.post<any>('http://localhost:3000/exams/register',form,{headers:headers});
   }
 
   getAllExams(){
@@ -69,6 +69,15 @@ export class DataService {
     let params = new HttpParams();
     params = params.append('userid',userid);
     return this.http.get<any>('http://localhost:3000/users/regsiteredexams',{headers:headers, params:params});
+  }
+
+  checkRegistry(userid,examid){
+    let headers = new HttpHeaders();
+    headers = headers.set('content-type','application/json');
+    let params = new HttpParams();
+    params = params.append('userid',userid);
+    params = params.append('examid',examid);
+    return this.http.get<any>('http://localhost:3000/users/checkregistry',{headers:headers, params:params});
   }
 
 }

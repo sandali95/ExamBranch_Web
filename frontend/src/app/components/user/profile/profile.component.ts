@@ -50,6 +50,8 @@ export class ProfileComponent implements OnInit {
     this.profileform.controls['indexno'].disable();
     this.profileform.controls['email'].disable();
     this.profileform.controls['field'].disable();
+
+    console.log(this.profileform.value);
   }
 
 }

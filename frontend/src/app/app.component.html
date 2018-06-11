@@ -1,10 +1,10 @@
 <app-navbar></app-navbar>
 
-<div class="column-1">
+<div class="column-1" style="min-height: 80vh !important">
     <router-outlet></router-outlet>
 </div>
 
-<div class="column-2" *ngIf="!admin.loggedAsAdmin">
+<div class="column-2" *ngIf="!admin.loggedAsAdmin" style="margin-left: 2%;">
     <mat-card class="column-right">
         <app-calender></app-calender>
     </mat-card>

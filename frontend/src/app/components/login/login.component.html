@@ -1,25 +1,24 @@
+<mat-toolbar color="primary" class="toolbar">
+  <mat-toolbar-row>
+    <span>Login</span>
+    <span class="example-spacer"></span>
+    <button mat-icon-button (click)="onCancel()">
+      <mat-icon>cancel</mat-icon>
+    </button>
+  </mat-toolbar-row>
+</mat-toolbar>
 
-    <mat-toolbar color="primary" class="toolbar">
-      <mat-toolbar-row>
-        <span>Login</span>
-        <span class="example-spacer"></span>
-        <a mat-button><mat-icon (click)="onCancel()">cancel</mat-icon></a>
-      </mat-toolbar-row>
-    </mat-toolbar>
-      
-    <div class="login-container">
-        <form [formGroup]="loginForm"  class="login" >
-            <mat-form-field>
-              <input matInput placeholder="Registration No" formControlName="regno" type="email">
-              </mat-form-field>
-              <br>
-            <mat-form-field>
-              <input matInput placeholder="Password" formControlName="password" type="password">
-            </mat-form-field>
-            <br>
-            <button mat-raised-button class="button" color="primary" (click)="onSubmit(loginForm)" [disabled]="loginForm.invalid">Login</button>
-            <button mat-raised-button class="button" color="accent" (click)="loginForm.reset();">Reset</button>
-        </form>
-    </div>     
-
-
+<div class="login-container">
+  <form [formGroup]="loginForm" class="login">
+    <mat-form-field>
+      <input matInput placeholder="Registration No" formControlName="regno" type="email">
+    </mat-form-field>
+    <br>
+    <mat-form-field>
+      <input matInput placeholder="Password" formControlName="password" type="password">
+    </mat-form-field>
+    <br>
+    <button mat-raised-button class="button" color="primary" (click)="onSubmit(loginForm)" [disabled]="loginForm.invalid">Login</button>
+    <button mat-raised-button class="button" color="accent" (click)="loginForm.reset();">Reset</button>
+  </form>
+</div>
