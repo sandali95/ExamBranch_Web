@@ -59,7 +59,8 @@ export class DashbordComponent implements OnInit {
                 this.dialoge.open(RepeatExamComponent, {
                   width: '1000px',
                   data: {
-                    id: data.exam_id,
+                    user : this.user,
+                    id   : data.exam_id,
                     title: news.title,
                     subjects: [],
                     year1: data.year1,

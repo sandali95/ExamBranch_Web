@@ -3,6 +3,7 @@ import { Routes, RouterModule, CanActivate } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ExamRegistartionComponent } from './exam-registartion/exam-registartion.component';
 import { AdminGuard } from '../../shared/service/services/admin.guard';
+import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
   // {
@@ -10,6 +11,10 @@ const routes: Routes = [
   //   component : LoginComponent,
 
   // },
+  {
+    path : 'profile',
+    component : ProfileComponent
+  },
   {
     path : 'newsfeed',
     component : DashboardComponent,

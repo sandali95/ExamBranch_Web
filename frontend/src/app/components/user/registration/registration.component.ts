@@ -47,7 +47,8 @@ export class RegistrationComponent implements OnInit {
       email   : this.registrationForm.value.email,
       year    : this.registrationForm.value.year,
       field   : this.registrationForm.value.field,
-      subjects: this.getAllSubjects()
+      subjects: this.getAllSubjects(),
+      type    : 'undergraduate'
     };
     this.registrationForm.reset();
     this.dataService.registration(form).subscribe(

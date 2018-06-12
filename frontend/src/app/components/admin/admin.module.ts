@@ -7,6 +7,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ExamRegistartionComponent } from './exam-registartion/exam-registartion.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { SubjectsComponent } from './subjects/subjects.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   imports: [
@@ -20,7 +21,8 @@ import { SubjectsComponent } from './subjects/subjects.component';
     DashboardComponent,
     ExamRegistartionComponent,
     SidenavComponent,
-    SubjectsComponent
+    SubjectsComponent,
+    ProfileComponent
   ]
 })
 export class AdminModule { }

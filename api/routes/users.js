@@ -11,13 +11,14 @@ const router = express.Router();
 
 //user register
 router.post('/register',(req,res)=>{
+    console.log(req.body.regno);
     User.findRegNo(req.body.regno,(err,data)=>{
         if(data.length >=1){
-            return res.status(402).json({
+            return res.json({
                 message : "Registration No is already in use"
             });
         }
-    })
+    });
 
     bcrypt.hash(req.body.password , 10 ,(err,hash)=>{
         if(err) {

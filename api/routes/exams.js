@@ -51,19 +51,36 @@ router.post('/register', (req, res) => {
         subjects : req.body.subjects
     }
     
-    Exam.updateExam(exam_id, student, (error, data) => {
-        if (error) {
-            res.status(500).json({
-                success: false,
-                message: error,
-            });
-        } else {
-            res.status(201).json({
-                success: true,
-                message: 'Student is registered',
-            });
-        }
-    });
+    if(req.body.type == 'undergraduate'){
+        Exam.updateExam(exam_id, student, (error, data) => {
+            if (error) {
+                res.status(500).json({
+                    success: false,
+                    message: error,
+                });
+            } else {
+                res.status(201).json({
+                    success: true,
+                    message: 'Student is registered',
+                });
+            }
+        });
+    }else{//repeat exam registration
+        Exam.updateRepeatExam(exam_id, student, (error, data) => {
+            if (error) {
+                res.status(500).json({
+                    success: false,
+                    message: error,
+                });
+            } else {
+                res.status(201).json({
+                    success: true,
+                    message: 'Student is registered',
+                });
+            }
+        });
+    }
+    
 
     Student.addExam(student_id, exam, (error,data)=>{
         if (error) {

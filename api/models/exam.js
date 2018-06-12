@@ -62,9 +62,13 @@ const ExamSchema = mongoose.Schema({
         required : true,
     },
     registrations : {
-        type : [StudentSchema],
-        required :false,
+        type      : [StudentSchema],
+        required  :false,
     },
+    repeat_registrations : {
+        type      : [StudentSchema],
+        required  : false
+    }
 
 });
 
@@ -85,6 +89,15 @@ module.exports.updateExam = (exam_id,student,callback)=>{
     Exam.update(
         {_id:_id},
         {$push:{'registrations':student}},
+        callback
+    );
+}
+
+module.exports.updateRepeatExam = (exam_id,student,callback)=>{
+    let _id = exam_id;
+    Exam.update(
+        {_id:_id},
+        {$push:{'repeat_registrations':student}},
         callback
     );
 }

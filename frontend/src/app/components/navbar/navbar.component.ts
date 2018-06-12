@@ -18,7 +18,8 @@ export class NavbarComponent implements OnInit {
   private router : Router, public snackBar : MatSnackBar, private admin : AdminService) { }
 
   ngOnInit() {
-
+    console.log(this.admin.isLoggedIn());
+    console.log(this.admin.loggedAsAdmin);
   }
 
   onLogin(){
@@ -44,6 +45,10 @@ export class NavbarComponent implements OnInit {
     this.admin.logOut();
     this.snackBar.open('LoggedOut !','',{duration : 2000});
     this.router.navigate(['/']);
+  }
+
+  onprofile(){
+    this.router.navigate(['/admin/profile']);
   }
 
 }
