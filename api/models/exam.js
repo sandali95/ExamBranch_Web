@@ -102,10 +102,14 @@ module.exports.updateRepeatExam = (exam_id,student,callback)=>{
     );
 }
 
-module.exports.findRegistration = (id,callback)=>{
-    Exam.findById(id,callback);
+module.exports.findRegistration = (id,callback)=> {
+    Exam.findById(id,{registrations:1,repeat_registrations:1,_id:0},callback);
 }
 
-module.exports.findExam = (id,callback)=>{
+module.exports.findExam = (id,callback)=> {
     Exam.find({_id:id}, callback);
+}
+
+module.exports.getAll = (callback)=> {
+    Exam.find(callback);
 }

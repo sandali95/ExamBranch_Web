@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from '../../../shared/service/services/data.service';
 
 @Component({
   selector: 'app-profile',
@@ -7,9 +8,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor() { }
+  displayedColumns = ['examid','exam', 'date','subjects','registrations','report'];
+  dataSource ;
+
+  constructor(private dataService : DataService) { }
 
   ngOnInit() {
+    this.getData();
+    
+  }
+
+  getData(){
+    this.dataService.getAllExams().subscribe(
+      data=>{ 
+        console.log(data);this.dataSource = data.data}
+    );
   }
 
 }
+

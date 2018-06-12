@@ -1,5 +1,4 @@
 const express = require('express');
-const mongoose = require('mongoose');
 
 const Exam = require('../models/exam');
 const Student = require('../models/user');
@@ -92,20 +91,34 @@ router.post('/register', (req, res) => {
 });
 
 //get all the registations for a given exam id
-router.get('/getstudents/:examid', (req, res) => {
-    let id = req.params.exam_id;
-    Exam.findRegistrations(id, (error, data) => {
+router.get('/getstudents', (req, res) => {
+    let year1 = []; let year2 = []; let year3 = []; let year4 = [];
+    let id = req.query.examid;
+    console.log(id);
+    Exam.findRegistration(id, (error, data) => {
         if (error) {
-            res.status(500).json({
-                success: false,
-                message: error,
-            });
+            console.log('error');
         } else {
-            res.status(201).json({
-                success: true,
-                message: 'All Student Registered',
-                data: data//getting all the data
-            });
+            res.send(data);
+        //    data.forEach(element => {
+        //        (element.registrations).forEach(ele => {
+        //         if(ele.year == 1){
+        //             year1.push(ele);
+        //         }else if(ele.year == 2){
+        //             year2.push(ele);
+        //         }else if(ele.year == 3 ){
+        //             year3.push(ele);
+        //         }else{
+        //             year4.push(ele);
+        //         }
+        //        });
+        //    });
+        //    res.json({
+        //        1 : year1,
+        //        2: year2,
+        //        3 : year3,
+        //        4 : year4
+        //    })
         }
     })
 });
