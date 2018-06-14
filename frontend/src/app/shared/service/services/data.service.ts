@@ -37,7 +37,6 @@ export class DataService {
     return this.http.get<any>('http://localhost:3000/exams/getexamdetails',{headers:headers, params:params});
   }
 
-
   //register for an exam
   registration(form){
     let headers = new HttpHeaders();

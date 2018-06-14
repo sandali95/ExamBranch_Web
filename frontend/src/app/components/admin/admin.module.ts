@@ -8,6 +8,8 @@ import { ExamRegistartionComponent } from './exam-registartion/exam-registartion
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { SubjectsComponent } from './subjects/subjects.component';
 import { ProfileComponent } from './profile/profile.component';
+import { ViewSubjectsComponent } from './view-subjects/view-subjects.component';
+import { ViewRegistrationsComponent } from './view-registrations/view-registrations.component';
 
 @NgModule({
   imports: [
@@ -22,7 +24,10 @@ import { ProfileComponent } from './profile/profile.component';
     ExamRegistartionComponent,
     SidenavComponent,
     SubjectsComponent,
-    ProfileComponent
-  ]
+    ProfileComponent,
+    ViewSubjectsComponent,
+    ViewRegistrationsComponent
+  ],
+  entryComponents:[ViewSubjectsComponent, ViewRegistrationsComponent]
 })
 export class AdminModule { }

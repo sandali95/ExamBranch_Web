@@ -1,41 +1,45 @@
 <div class="example-container mat-elevation-z8" style="margin-top: 10px;">
     <mat-table #table [dataSource]="dataSource">
 
-        <!--- Note that these columns can be defined in any order.
-                The actual rendered columns are set as a property on the row definition" -->
-
-        <!-- Position Column -->
-        <ng-container matColumnDef="examid">
-            <mat-header-cell *matHeaderCellDef> Exam Id </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element._id}} </mat-cell>
-        </ng-container>
-
-        <!-- Name Column -->
         <ng-container matColumnDef="exam">
             <mat-header-cell *matHeaderCellDef> Exam </mat-header-cell>
             <mat-cell *matCellDef="let element"> {{element.exam}} </mat-cell>
         </ng-container>
 
-        <!-- Weight Column -->
-        <ng-container matColumnDef="date">
-            <mat-header-cell *matHeaderCellDef> Date </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.date}} </mat-cell>
-        </ng-container>
-
-        <!-- Symbol Column -->
         <ng-container matColumnDef="subjects">
             <mat-header-cell *matHeaderCellDef> Subjects </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.subjects}} </mat-cell>
+            <mat-cell *matCellDef="let element">
+                <button mat-icon-button (click)="viewSubjects()">
+                    <mat-icon>info</mat-icon>
+                </button>
+            </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="registrations">
             <mat-header-cell *matHeaderCellDef> Registrations </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.registrations}} </mat-cell>
+            <mat-cell *matCellDef="let element"> {{element.registrations.length}}
+                <button mat-icon-button (click)=" viewRegistrations()">
+                    <mat-icon>info</mat-icon>
+                </button>
+            </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="repeat">
+            <mat-header-cell *matHeaderCellDef> Repeat Registrations </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.repeat_registrations.length}}
+                <button mat-icon-button>
+                    <mat-icon>info</mat-icon>
+                </button>
+            </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="report">
-            <mat-header-cell *matHeaderCellDef> Generate Report </mat-header-cell>
-            <mat-cell *matCellDef="let element"> report </mat-cell>
+            <mat-header-cell *matHeaderCellDef> Report </mat-header-cell>
+            <mat-cell *matCellDef="let element">
+                <a mat-button>
+                    <mat-icon>print</mat-icon>
+                </a>
+            </mat-cell>
         </ng-container>
 
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

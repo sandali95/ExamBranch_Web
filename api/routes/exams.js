@@ -151,7 +151,7 @@ router.get('/getexamdetails', (req, res) => {
     })
 });
 
-//get all the valid exams and ids
+//get all the valid exams details
 router.get('/getallexams', (req, res) => {
     Exam.getAll((error, data) => {
         if (error) {
