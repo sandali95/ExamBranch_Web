@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 
 @Component({
   selector: 'app-view-registrations',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ViewRegistrationsComponent implements OnInit {
 
-  constructor() { }
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private dialogeRef : MatDialogRef<ViewRegistrationsComponent>) { }
 
   ngOnInit() {
+  }
+
+  onCancel(){
+    this.dialogeRef.close();
   }
 
 }

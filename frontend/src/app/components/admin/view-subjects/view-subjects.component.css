@@ -1,0 +1,21 @@
+.example-container {
+    display: flex;
+    flex-direction: column;
+    max-height: 500px;
+    min-width: 300px;
+    margin:10px;
+  }
+  
+  .mat-table {
+    overflow: auto;
+    max-height: 500px;
+  }
+
+  .toolbar {
+    border-radius: 5px;
+    padding-bottom: 10px;
+  }
+
+  .example-spacer {
+    flex: 1 1 auto;
+  }

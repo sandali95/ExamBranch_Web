@@ -9,7 +9,7 @@
         <ng-container matColumnDef="subjects">
             <mat-header-cell *matHeaderCellDef> Subjects </mat-header-cell>
             <mat-cell *matCellDef="let element">
-                <button mat-icon-button (click)="viewSubjects()">
+                <button mat-icon-button (click)="viewSubjects(element.subjects)">
                     <mat-icon>info</mat-icon>
                 </button>
             </mat-cell>

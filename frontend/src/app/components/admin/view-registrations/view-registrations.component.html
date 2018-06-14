@@ -1,3 +1,28 @@
-<p>
-  view-registrations works!
-</p>
+
+
+<div class="example-container mat-elevation-z8">
+  <mat-table #table [dataSource]="dataSource">
+
+      <ng-container matColumnDef="year">
+          <mat-header-cell *matHeaderCellDef><h2>Year</h2> </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.year}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="cs">
+          <mat-header-cell *matHeaderCellDef> CS</mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.cs}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="is">
+          <mat-header-cell *matHeaderCellDef> IS </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.is}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="se">
+          <mat-header-cell *matHeaderCellDef> SE </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.se}} </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+</div>

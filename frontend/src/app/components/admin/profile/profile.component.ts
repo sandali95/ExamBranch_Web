@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import {MatDialog} from '@angular/material';
 import { DataService } from '../../../shared/service/services/data.service';
 import { ViewSubjectsComponent } from '../view-subjects/view-subjects.component';
 import { ViewRegistrationsComponent } from '../view-registrations/view-registrations.component';
@@ -27,9 +27,11 @@ export class ProfileComponent implements OnInit {
     );
   }
 
-  viewSubjects(){
+  viewSubjects(element){
+    console.log(element)
     let dialogRef = this.dialog.open(ViewSubjectsComponent, {
-      width : '250px'
+      width : '800px',
+      data : {subjects :element}
     }); 
   }
 
