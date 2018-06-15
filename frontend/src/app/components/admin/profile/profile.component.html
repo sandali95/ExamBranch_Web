@@ -18,7 +18,7 @@
         <ng-container matColumnDef="registrations">
             <mat-header-cell *matHeaderCellDef> Registrations </mat-header-cell>
             <mat-cell *matCellDef="let element"> {{element.registrations.length}}
-                <button mat-icon-button (click)=" viewRegistrations()">
+                <button mat-icon-button (click)=" viewRegistrations(element.registrations)">
                     <mat-icon>info</mat-icon>
                 </button>
             </mat-cell>
@@ -27,7 +27,7 @@
         <ng-container matColumnDef="repeat">
             <mat-header-cell *matHeaderCellDef> Repeat Registrations </mat-header-cell>
             <mat-cell *matCellDef="let element"> {{element.repeat_registrations.length}}
-                <button mat-icon-button>
+                <button mat-icon-button (click)="viewRepeaters(element.repeat_registrations)">
                     <mat-icon>info</mat-icon>
                 </button>
             </mat-cell>

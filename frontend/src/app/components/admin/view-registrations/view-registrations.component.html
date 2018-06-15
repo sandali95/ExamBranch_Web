@@ -1,28 +1,47 @@
-
+<mat-toolbar color="primary" class="toolbar">
+    <mat-toolbar-row>
+        <span>Student Registrations</span>
+        <span class="example-spacer"></span>
+        <button mat-icon-button (click)="onCancel()">
+            <mat-icon>cancel</mat-icon>
+        </button>
+    </mat-toolbar-row>
+</mat-toolbar>
 
 <div class="example-container mat-elevation-z8">
-  <mat-table #table [dataSource]="dataSource">
-
+    <mat-table #table [dataSource]="dataSource">
+  
+      <!--- Note that these columns can be defined in any order.
+            The actual rendered columns are set as a property on the row definition" -->
+  
+      <!-- Position Column -->
       <ng-container matColumnDef="year">
-          <mat-header-cell *matHeaderCellDef><h2>Year</h2> </mat-header-cell>
-          <mat-cell *matCellDef="let element"> {{element.year}} </mat-cell>
+        <mat-header-cell *matHeaderCellDef> Year. </mat-header-cell>
+        <mat-cell *matCellDef="let element"> <h5>{{element.year}}</h5> </mat-cell>
       </ng-container>
+  
+      <!-- Name Column -->
       <ng-container matColumnDef="cs">
-          <mat-header-cell *matHeaderCellDef> CS</mat-header-cell>
-          <mat-cell *matCellDef="let element"> {{element.cs}} </mat-cell>
+        <mat-header-cell *matHeaderCellDef> CS </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.cs.length}} </mat-cell>
       </ng-container>
-
+  
+      <!-- Weight Column -->
       <ng-container matColumnDef="is">
-          <mat-header-cell *matHeaderCellDef> IS </mat-header-cell>
-          <mat-cell *matCellDef="let element"> {{element.is}} </mat-cell>
+        <mat-header-cell *matHeaderCellDef> IS </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.is.length}} </mat-cell>
       </ng-container>
-
+  
+      <!-- Symbol Column -->
       <ng-container matColumnDef="se">
-          <mat-header-cell *matHeaderCellDef> SE </mat-header-cell>
-          <mat-cell *matCellDef="let element"> {{element.se}} </mat-cell>
+        <mat-header-cell *matHeaderCellDef> SE </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.se.length}} </mat-cell>
       </ng-container>
-
+  
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
       <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-  </mat-table>
-</div>
+    </mat-table>
+  </div>
+  
+  
+

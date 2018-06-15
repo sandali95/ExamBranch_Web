@@ -45,6 +45,7 @@ const StudentSchema = mongoose.Schema({
     fullname : String,
     email : String,
     year : Number,
+    field : String,
     subjects : []
 });
 

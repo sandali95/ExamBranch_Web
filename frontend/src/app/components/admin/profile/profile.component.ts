@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {MatDialog} from '@angular/material';
+import { MatDialog } from '@angular/material';
 import { DataService } from '../../../shared/service/services/data.service';
 import { ViewSubjectsComponent } from '../view-subjects/view-subjects.component';
 import { ViewRegistrationsComponent } from '../view-registrations/view-registrations.component';
@@ -11,34 +11,83 @@ import { ViewRegistrationsComponent } from '../view-registrations/view-registrat
 })
 export class ProfileComponent implements OnInit {
 
-  displayedColumns = ['exam','subjects','registrations','repeat','report'];
-  dataSource ;
+  displayedColumns = ['exam', 'subjects', 'registrations', 'repeat', 'report'];
+  dataSource;
 
-  constructor(private dataService : DataService, public dialog: MatDialog) { }
+  constructor(private dataService: DataService, public dialog: MatDialog) { }
 
   ngOnInit() {
-    this.getData();   
+    this.getData();
   }
 
-  getData(){
+  getData() {
     this.dataService.getAllExams().subscribe(
-      data=>{ 
-        console.log(data);this.dataSource = data.data}
+      data => {
+        console.log(data); this.dataSource = data.data;
+      }
     );
   }
 
-  viewSubjects(element){
-    console.log(element)
+  viewSubjects(element) {
     let dialogRef = this.dialog.open(ViewSubjectsComponent, {
-      width : '800px',
-      data : {subjects :element}
-    }); 
+      width: '800px',
+      data: { subjects: element }
+    });
   }
 
-  viewRegistrations(){
-    let dialogRef = this.dialog.open(ViewRegistrationsComponent, {
-      width : '250px'
+  viewRegistrations(element) {
+    
+    //sort registrations
+    let year1 = {cs:[],is:[],se:[]}; let year2 = {cs:[],is:[],se:[]}; let year3 = {cs:[],is:[],se:[]}; let year4 = {cs:[],is:[],se:[]};
+    element.forEach(element => {
+      if (element.year == 1) {
+        if(element.field == 'cs'){
+          year1.cs.push(element);
+        }else if(element.field == 'is'){
+          year1.is.push(element);
+        }else{
+          year1.se.push(element);
+        }
+      } else if (element.year == 2) {
+        if(element.field == 'cs'){
+          year2.cs.push(element);
+        }else if(element.field == 'is'){
+          year2.is.push(element);
+        }else{
+          year2.se.push(element);
+        }
+      } else if (element.year == 3) {
+        if(element.field == 'cs'){
+          year3.cs.push(element);
+        }else if(element.field == 'is'){
+          year3.is.push(element);
+        }else{
+          year3.se.push(element);
+        }
+      } else {
+        if(element.field == 'cs'){
+          year4.cs.push(element);
+        }else if(element.field == 'is'){
+          year4.is.push(element);
+        }else{
+          year4.se.push(element);
+        }
+      }
     });
+
+    let dialogRef = this.dialog.open(ViewRegistrationsComponent, {
+      width: '800px',
+      data: { 
+        year1 : year1,
+        year2 : year2,
+        year3 : year3,
+        year4 : year4
+       }
+    });
+  }
+
+  viewRepeaters(element) {
+
   }
 
 }

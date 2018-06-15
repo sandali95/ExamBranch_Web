@@ -40,6 +40,7 @@ router.post('/register', (req, res) => {
         fullname: req.body.fullname,
         email   : req.body.email,
         year    : req.body.year,
+        field   : req.body.field,
         subjects: req.body.subjects
     }
 
@@ -100,25 +101,6 @@ router.get('/getstudents', (req, res) => {
             console.log('error');
         } else {
             res.send(data);
-        //    data.forEach(element => {
-        //        (element.registrations).forEach(ele => {
-        //         if(ele.year == 1){
-        //             year1.push(ele);
-        //         }else if(ele.year == 2){
-        //             year2.push(ele);
-        //         }else if(ele.year == 3 ){
-        //             year3.push(ele);
-        //         }else{
-        //             year4.push(ele);
-        //         }
-        //        });
-        //    });
-        //    res.json({
-        //        1 : year1,
-        //        2: year2,
-        //        3 : year3,
-        //        4 : year4
-        //    })
         }
     })
 });
