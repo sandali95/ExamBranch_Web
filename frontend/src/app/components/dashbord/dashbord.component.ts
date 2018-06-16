@@ -24,17 +24,16 @@ export class DashbordComponent implements OnInit {
   }
 
   onRegister(news) {
-    //check whether the student is already registered
-    this.dataService.checkRegistry(this.user.userid, news.exam_id).subscribe(
-      data => {
-        if (!data.value) {
-          console.log(data);
-          this.snackBar.open('Already Registed for the Exam');
-        } else {
-          //should check whether the student is udergraduate or postgraduate
-          if (news.student == 'undergraduate') {
+    //should check whether the student is udergraduate or postgraduate
+    if (news.student == 'undergraduate') {
+      //check whether the student is already registered
+      this.dataService.checkRegistry(this.user.userid, news.exam_id).subscribe(
+        data => {
+          if (!data.value) {
+            this.snackBar.open('Already Registed for the Exam','',{duration:2000});
+
+          } else {
             //get the exam details from examschema
-            console.log(news.exam_id)
             this.dataService.getExam(news.exam_id).subscribe(
               data => {
                 console.log(data);
@@ -52,30 +51,29 @@ export class DashbordComponent implements OnInit {
                   } //send userdetails for auto completion
                 });
               });
-          } else if (news.student == 'repeat') { // for repeat exam forms
-            this.dataService.getExam(news.exam_id).subscribe(
-              data => {
-                console.log(data);
-                this.dialoge.open(RepeatExamComponent, {
-                  width: '1000px',
-                  data: {
-                    user : this.user,
-                    id   : data.exam_id,
-                    title: news.title,
-                    subjects: [],
-                    year1: data.year1,
-                    year2: data.year2,
-                    year3: data.year3,
-                    year4: data.year4
-                  } //send userdetails for auto completion
-                });
-              });
-          } else {//
-
           }
-        }
-      }
-    );
+        });
+    } else if (news.student == 'repeat') { // for repeat exam forms
+      this.dataService.getExam(news.exam_id).subscribe(
+        data => {
+          console.log(data);
+          this.dialoge.open(RepeatExamComponent, {
+            width: '1000px',
+            data: {
+              user: this.user,
+              id: data.exam_id,
+              title: news.title,
+              subjects: [],
+              year1: data.year1,
+              year2: data.year2,
+              year3: data.year3,
+              year4: data.year4
+            } //send userdetails for auto completion
+          });
+        });
+    } else {//postgraduate
+
+    }
   }
 
   getAllNews() {
