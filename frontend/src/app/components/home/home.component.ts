@@ -8,6 +8,11 @@ import { Component, OnInit } from '@angular/core';
 export class HomeComponent implements OnInit {
 
   constructor() { }
+  tiles = [
+    {text: 'One', cols: 4, rows: 2, color: 'secondary'},
+    {text: 'Three', cols: 2, rows: 4, color: 'lightpink'},
+    {text: 'Four', cols: 2, rows: 4, color: '#DDBDF1'},
+  ];
 
   ngOnInit() {
   }
