@@ -18,8 +18,7 @@ export class NavbarComponent implements OnInit {
   private router : Router, public snackBar : MatSnackBar, private admin : AdminService) { }
 
   ngOnInit() {
-    console.log(this.admin.isLoggedIn());
-    console.log(this.admin.loggedAsAdmin);
+    console.log(this.admin.loggedAsAdmin());
   }
 
   onLogin(){

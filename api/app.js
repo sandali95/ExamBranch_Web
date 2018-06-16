@@ -10,6 +10,7 @@ const userRoutes = require('./routes/users');
 const newsRoutes = require('./routes/news');
 const examRoutes = require('./routes/exams');
 const studentRoutes = require('./routes/students');
+const adminRoutes = require('./routes/admin');
 
 const app = express();
 
@@ -36,7 +37,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 //Items for newsfeed - Home routes
-app.use('/', newsRoutes);
+app.use('/',newsRoutes);
 
 //User authentication routes
 app.use('/users',userRoutes);
@@ -46,6 +47,9 @@ app.use('/exams',examRoutes);
 
 //Student routes
 app.use('/students',studentRoutes);
+
+//Admin Routes
+app.use('/admin', adminRoutes);
 
 
 module.exports = app ;

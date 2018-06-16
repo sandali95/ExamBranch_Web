@@ -3,54 +3,65 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
 @Injectable()
 export class AdminService {
-  public test : String;
-  public loggedAsAdmin :boolean = false;
+  public test: String;
 
-  constructor(private http : HttpClient) { }
+  constructor(private http: HttpClient) { }
 
-  authenticate(user){
+  authenticate(user) {
     let headers = new HttpHeaders();
-    headers =headers.set('content-type','application/json');
-    return this.http.post<any>('http://localhost:3000/users/login',user,{headers:headers});
+    headers = headers.set('content-type', 'application/json');
+    return this.http.post<any>('http://localhost:3000/admin/login', user, { headers: headers });
   }
 
-  isLoggedIn(){
-    if(localStorage.getItem('token') == null){
-     return false;
-    }else{
-     return true;
-    } 
-   }
- 
-   logOut(){
-    this.loggedAsAdmin = false;
+  loggedAsAdmin() {
+    if (localStorage.getItem('token') == null) {
+      return false;
+    } else {
+      let token = localStorage.getItem('token');
+      let admin = token.split(' ', 2);
+      if (admin[0] == 'Admin') {
+        return true
+      } else {
+        return false;
+      }
+    }
+  }
+
+  isLoggedIn() {
+    if (localStorage.getItem('token') == null) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  logOut() {
     localStorage.clear();
-   }
- 
-   storeUser(token){
-     this.loggedAsAdmin = true;
-     localStorage.setItem('token',token);
-   }
+  }
+
+  storeUser(token) {
+    localStorage.setItem('token', token);
+  }
 
   //post news tthe database so that it can be displayed in the newsfeed
-  postNews(news){
+  postNews(news) {
     let headers = new HttpHeaders();
-    headers = headers.set('content-type','application/json');
-    return this.http.post<any>('http://localhost:3000/savenews',news,{headers:headers});
+    headers = headers.set('content-type', 'application/json');
+    return this.http.post<any>('http://localhost:3000/savenews', news, { headers: headers });
   }
 
-  postExam(exam){
+  postExam(exam) {
     let headers = new HttpHeaders();
-    headers = headers.set('content-type','application/json');
-    return this.http.post<any>('http://localhost:3000/exams/save',exam,{headers:headers});
+    headers = headers.set('content-type', 'application/json');
+    return this.http.post<any>('http://localhost:3000/exams/save', exam, { headers: headers });
   }
 
-  deleteNews(newsid){
+  deleteNews(newsid) {
     let headers = new HttpHeaders();
-    headers = headers.set('content-type','application/json');
+    headers = headers.set('content-type', 'application/json');
     let params = new HttpParams();
-    params = params.append('newsid',newsid);
-    return this.http.get<any>('http://localhost:3000/deletenews',{headers:headers, params:params});
+    params = params.append('newsid', newsid);
+    return this.http.get<any>('http://localhost:3000/deletenews', { headers: headers, params: params });
   }
 
 

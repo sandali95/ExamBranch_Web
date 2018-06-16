@@ -56,9 +56,13 @@ const userSchema = mongoose.Schema({
 
 const User = module.exports = mongoose.model('users', userSchema);
 
-//find user by email
+//find user byregitsration no
 module.exports.findRegNo = (regno,callback)=>{
     User.find({registrationNo:regno},callback);
+}
+
+module.exports.findEmail = (email,callback)=>{
+    User.find({email:email},callback);
 }
 
 module.exports.addUser = (newUser,callback)=>{

@@ -45,7 +45,6 @@ export class UserService {
   storeUser(token,user){
     localStorage.setItem('token',token);
     localStorage.setItem('user',user);
-    console.log(JSON.parse(localStorage.getItem('user')));
   }
 
   getProfile(){

@@ -10,6 +10,7 @@ import { SubjectsComponent } from './subjects/subjects.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ViewSubjectsComponent } from './view-subjects/view-subjects.component';
 import { ViewRegistrationsComponent } from './view-registrations/view-registrations.component';
+import { ReportGeneratorComponent } from './report-generator/report-generator.component';
 
 @NgModule({
   imports: [
@@ -26,8 +27,9 @@ import { ViewRegistrationsComponent } from './view-registrations/view-registrati
     SubjectsComponent,
     ProfileComponent,
     ViewSubjectsComponent,
-    ViewRegistrationsComponent
+    ViewRegistrationsComponent,
+    ReportGeneratorComponent
   ],
-  entryComponents:[ViewSubjectsComponent, ViewRegistrationsComponent]
+  entryComponents:[ViewSubjectsComponent, ViewRegistrationsComponent, ReportGeneratorComponent]
 })
 export class AdminModule { }

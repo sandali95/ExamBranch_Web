@@ -16,7 +16,6 @@ export class AdminLoginComponent implements OnInit {
     private router: Router, public snackbar: MatSnackBar) { }
 
   ngOnInit() {
-    this.adminService.loggedAsAdmin = true;
     this.adminlogin = this.fb.group({
       username: [''],
       password: ['']

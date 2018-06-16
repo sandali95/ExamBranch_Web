@@ -1,0 +1,46 @@
+<mat-card #content>
+  <h2>{{data.exam.exam}} - Report</h2>
+  <hr>
+  <h3>Starting Date : </h3>
+  <p>{{data.exam.date}}</p>
+  <h3>Total Registrations :
+    <p>{{data.exam.registrations.length}}</p>
+  </h3>
+  <table style="border: 1px solid black;">
+    <tr>
+      <th>Field</th>
+      <th>1st Year</th>
+      <th>2nd Year</th>
+      <th>3rd Year</th>
+      <th>4th Year</th>
+    </tr>
+    <tr>
+      <th>CS</th>
+      <td>{{data.year1.cs.length}}</td>
+      <td>{{data.year2.cs.length}}</td>
+      <td>{{data.year3.cs.length}}</td>
+      <td>{{data.year4.cs.length}}</td>
+    </tr>
+    <tr>
+      <th>IS</th>
+      <td>{{data.year1.is.length}}</td>
+      <td>{{data.year2.is.length}}</td>
+      <td>{{data.year3.is.length}}</td>
+      <td>{{data.year4.is.length}}</td>
+    </tr>
+    <tr>
+      <th>SE</th>
+      <td>{{data.year1.se.length}}</td>
+      <td>{{data.year2.se.length}}</td>
+      <td>{{data.year3.se.length}}</td>
+      <td>{{data.year4.se.length}}</td>
+    </tr>
+  </table>
+  <h3>Total Repeat Registrations :
+    <p>{{data.exam.repeat_registrations.length}}</p>
+  </h3>
+</mat-card>
+
+
+
+<button (click)="download()">Download</button>

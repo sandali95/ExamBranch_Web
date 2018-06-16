@@ -57,7 +57,6 @@ router.post('/register',(req,res)=>{
 
 //user authentication without bcrypt
 router.post('/login', (req,res)=>{
-    console.log(req.body);
     User.findRegNo(req.body.regno, (err,user)=>{
         if(user.length<1){
             return res.json({
