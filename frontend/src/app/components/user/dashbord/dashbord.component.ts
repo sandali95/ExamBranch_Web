@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatSnackBar } from '@angular/material';
-import { RegistrationComponent } from '../user/registration/registration.component';
-import { DataService } from '../../shared/service/services/data.service';
-import { RepeatExamComponent } from '../user/repeat-exam/repeat-exam.component';
-import { UserService } from '../../shared/service/services/user.service';
+import { RegistrationComponent } from '../registration/registration.component';
+import { DataService } from '../../../shared/service/services/data.service';
+import { RepeatExamComponent } from '../repeat-exam/repeat-exam.component';
+import { UserService } from '../../../shared/service/services/user.service';
 
 export interface subjects { }
 @Component({
@@ -24,7 +24,7 @@ export class DashbordComponent implements OnInit {
   }
 
   onRegister(news) {
-    //should check whether the student is udergraduate or postgraduate
+    //should check whether the student is undergraduate or postgraduate
     if (news.student == 'undergraduate') {
       //check whether the student is already registered
       this.dataService.checkRegistry(this.user.userid, news.exam_id).subscribe(

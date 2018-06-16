@@ -1,20 +1,15 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, CanActivate } from '@angular/router';
 import { AdminLoginComponent } from './components/admin-login/admin-login.component';
-import { DashbordComponent } from './components/dashbord/dashbord.component';
 import { AuthGuard } from './shared/service/services/auth.guard';
 import { AdminGuard } from './shared/service/services/admin.guard';
 import { LoginComponent } from './components/login/login.component';
+import { HomeComponent } from './components/home/home.component';
 
 const routes : Routes = [
   {
     path      : 'login',
     component : LoginComponent
-  },
-  {
-    path      : 'dashboard',
-    component : DashbordComponent,
-    canActivate: [AuthGuard], 
   },
   {
     path         : 'user',
@@ -31,11 +26,12 @@ const routes : Routes = [
     loadChildren : 'app/components/admin/admin.module#AdminModule',
     canActivateChild : [AdminGuard]
   },
-  // {
-  //   path       : '',
-  //   redirectTo : '',
-  //   pathMatch  : 'full'
-  // }
+  {
+    path       : '',
+    component : HomeComponent,
+    redirectTo : '',
+    pathMatch  : 'full'
+  }
 ]
 
 @NgModule({

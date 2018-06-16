@@ -6,6 +6,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../../shared/material/material.module';
 import { ExamstableComponent } from './examstable/examstable.component';
+import { DashbordComponent } from './dashbord/dashbord.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -14,6 +15,10 @@ import { ExamstableComponent } from './examstable/examstable.component';
     FormsModule,
     ReactiveFormsModule
   ],
-  declarations: [ProfileComponent, ExamstableComponent]
+  declarations: [
+    ProfileComponent, 
+    ExamstableComponent,
+    DashbordComponent
+  ]
 })
 export class UserModule { }

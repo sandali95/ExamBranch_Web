@@ -40,11 +40,11 @@ export class LoginComponent implements OnInit {
       if(data.success){
         this.dialogeRef.close();
         this.userService.storeUser(data.token,JSON.stringify(data.user));
-        this.router.navigate(['/dashboard']);
+        this.router.navigate(['/user/dashboard']);
         this.snackBar.open('Logged In!', '', {duration: 2000,});
       }else{
         this.loginForm.reset();
-        this.snackBar.open('Invalida Credentials!', '', {duration: 2000,});
+        this.snackBar.open('Invalid Credentials!', '', {duration: 2000,});
       }       
       }
     );
