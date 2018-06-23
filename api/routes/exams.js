@@ -2,6 +2,7 @@ const express = require('express');
 
 const Exam = require('../models/exam');
 const Student = require('../models/user');
+const mail = require('./mail'); //send mails for successfull regstrations
 
 const router = express.Router();
 
@@ -89,6 +90,13 @@ router.post('/register', (req, res) => {
             console.log('successful');
         }
     });
+
+    let std = {
+        exam   : req.body.exam,
+        subjects : req.body.subjects,
+        email : req.body.email 
+    }
+    mail.sendmail(std);
 });
 
 //get all the registations for a given exam id
@@ -149,4 +157,13 @@ router.get('/getallexams', (req, res) => {
         }
     });
 });
+
+// router.get('/sendmail',(req,res)=>{
+//     let user ={
+//         exam : req.query.exam,
+//         email : req.query.email,
+//         subjects:[1,2,3,4]
+//     };
+//     mail.sendmail(user);
+// });
 module.exports = router;

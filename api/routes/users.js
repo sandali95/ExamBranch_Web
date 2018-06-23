@@ -10,44 +10,44 @@ const router = express.Router();
 
 
 //user register
-router.post('/register',(req,res)=>{
+router.post('/register', (req, res) => {
     console.log(req.body.regno);
-    User.findRegNo(req.body.regno,(err,data)=>{
-        if(data.length >=1){
+    User.findRegNo(req.body.regno, (err, data) => {
+        if (data.length >= 1) {
             return res.json({
-                message : "Registration No is already in use"
+                message: "Registration No is already in use"
             });
         }
     });
 
-    bcrypt.hash(req.body.password , 10 ,(err,hash)=>{
-        if(err) {
+    bcrypt.hash(req.body.password, 10, (err, hash) => {
+        if (err) {
             return res.status(500).json(
-                {error : err}
+                { error: err }
             );
-        }else{
+        } else {
             let newUser = {
-                indexNo : req.body.indexno,
-                registrationNo : req.body.regno,
-                username : req.body.username,
-                password : hash,
-                email    : req.body.email,
-                field    : req.body.field,
+                indexNo: req.body.indexno,
+                registrationNo: req.body.regno,
+                username: req.body.username,
+                password: hash,
+                email: req.body.email,
+                field: req.body.field,
             }
-            User.addUser(newUser,(err,data)=>{
-                if(err){
+            User.addUser(newUser, (err, data) => {
+                if (err) {
                     res.status(500).json({
-                        success : false,
-                        msg : err,
-                        user : newUser
+                        success: false,
+                        msg: err,
+                        user: newUser
                     });
-                  }else{
+                } else {
                     res.status(201).json({
-                        success : true,
-                        msg : "Created a new User",
-                        user : data
+                        success: true,
+                        msg: "Created a new User",
+                        user: data
                     });
-                  }
+                }
             });
         }
     });
@@ -56,38 +56,38 @@ router.post('/register',(req,res)=>{
 
 
 //user authentication without bcrypt
-router.post('/login', (req,res)=>{
-    User.findRegNo(req.body.regno, (err,user)=>{
-        if(user.length<1){
+router.post('/login', (req, res) => {
+    User.findRegNo(req.body.regno, (err, user) => {
+        if (user.length < 1) {
             return res.json({
-                success : false,
-                message : 'No user exists for the Registration No'
+                success: false,
+                message: 'No user exists for the Registration No'
             });
-        }else{
-            bcrypt.compare(req.body.password , user[0].password,(err,result)=>{
-                if(err) throw err ;
+        } else {
+            bcrypt.compare(req.body.password, user[0].password, (err, result) => {
+                if (err) throw err;
                 const token = jwt.sign({
-                    regno  : user[0].registrationNo,
-                    userId : user[0]._id
+                    regno: user[0].registrationNo,
+                    userId: user[0]._id
                 },
-                config.secret,
-                {expiresIn : '1h'});
+                    config.secret,
+                    { expiresIn: '1h' });
 
-                if(result){
+                if (result) {
                     return res.status(200).json({
-                        success : true,
-                        message : 'Authentication successful',
-                        token   : `Bearer ${token}`,
-                        user    : {
-                            userid   : user[0]._id,
-                            username : user[0].username,
-                            regno    : user[0].registrationNo,
-                            indexno  : user[0].indexNo,
-                            email    : user[0].email,
-                            field    : user[0].field,
+                        success: true,
+                        message: 'Authentication successful',
+                        token: `Bearer ${token}`,
+                        user: {
+                            userid: user[0]._id,
+                            username: user[0].username,
+                            regno: user[0].registrationNo,
+                            indexno: user[0].indexNo,
+                            email: user[0].email,
+                            field: user[0].field,
                         }
                     });
-                }else{
+                } else {
                     return res.json({
                         success: false,
                         message: 'Authentication Unsuccessful'
@@ -98,18 +98,38 @@ router.post('/login', (req,res)=>{
     });
 });
 
-//user profile data
-router.get('/authentication', verifyToken, (req,res)=>{
-    jwt.verify(req.token, config.secret, (err,authData)=>{
-        if(err) {
-            res.status(403).json({
-                success : false,
-                message : 'Unauthorizad',
+//update profile
+router.post('/update', (req, res) => {
+    console.log(req.body.user);
+    User.updateProfile(req.body.user, (err, data) => {
+        if (err) {
+            res.json({
+                success: false,
+                message: 'Unsuccessfull',
+                data:err
             });
-        }else{
+        } else {
             res.status(200).json({
-                success : true,
-                message : 'Authorizad',
+                success: true,
+                message: 'Authorizad',
+                data : data
+            });
+        }
+    });
+});
+
+//user profile data
+router.get('/authentication', verifyToken, (req, res) => {
+    jwt.verify(req.token, config.secret, (err, authData) => {
+        if (err) {
+            res.status(403).json({
+                success: false,
+                message: 'Unauthorizad',
+            });
+        } else {
+            res.status(200).json({
+                success: true,
+                message: 'Authorizad',
                 authData: authData,
             });
         }
@@ -121,62 +141,63 @@ function verifyToken(req, res, next) {
     // Get auth header value
     const bearerHeader = req.headers['authorization'];
     // Check if bearer is undefined
-    if(typeof bearerHeader !== 'undefined') {
-      // Split at the space
-      const bearer = bearerHeader.split(' ');
-      // Get token from array
-      const bearerToken = bearer[1];
-      // Set the token
-      req.token = bearerToken;
-      // Next middleware
-      next();
+    if (typeof bearerHeader !== 'undefined') {
+        // Split at the space
+        const bearer = bearerHeader.split(' ');
+        // Get token from array
+        const bearerToken = bearer[1];
+        // Set the token
+        req.token = bearerToken;
+        // Next middleware
+        next();
     } else {
-      // Forbidden
-      res.sendStatus(403);
+        // Forbidden
+        res.sendStatus(403);
     }
-  
+
 }
 
-router.get('/regsiteredexams',(req,res)=>{
+router.get('/regsiteredexams', (req, res) => {
     let _id = req.query.userid;
-    User.getRegisteredExams(_id, (error,data)=>{
-        if(error) {
+    User.getRegisteredExams(_id, (error, data) => {
+        if (error) {
             res.json({
-                success : false,
-                message : error,
+                success: false,
+                message: error,
             });
-        }else{
+        } else {
             res.status(200).json({
-                success : true,
-                message : 'Exam Registration Details',
-                registrations : data[0].registrations
+                success: true,
+                message: 'Exam Registration Details',
+                registrations: data[0].registrations
             });
         }
     });
 });
 
 //check whether the student is already registered here
-router.get('/checkregistry', (req,res)=>{
-    let _id =  req.query.userid;
+router.get('/checkregistry', (req, res) => {
+    let _id = req.query.userid;
     let examid = req.query.examid;
-    User.getRegisteredExams(_id, (error,data)=>{
-        if(error) {
-           console.log(error);
-        }else{
-            if(data[0].registerdExams.length<0){
-                console.log('true');res.status(200).json({
-                    value : true
+    User.getRegisteredExams(_id, (error, data) => {
+        if (error) {
+            console.log(error);
+        } else {
+            if (data[0].registerdExams.length < 0) {
+                console.log('true'); res.status(200).json({
+                    value: true
                 });
-            }else if( data[0].registerdExams.includes(examid)){
+            } else if (data[0].registerdExams.includes(examid)) {
                 res.status(200).json({
-                    value : false
+                    value: false
                 });
-            }else{
+            } else {
                 res.status(200).json({
-                    value : true
+                    value: true
                 });
             }
         }
     });
 });
-module.exports = router ;
+
+module.exports = router;

@@ -41,17 +41,31 @@ export class ProfileComponent implements OnInit {
     this.profileform.controls['indexno'].enable();
     this.profileform.controls['email'].enable();
     this.profileform.controls['field'].enable();
+
   }
 
 
-  onSave(){
+  onSave(profileform){
     this.profileform.controls['username'].disable()
     this.profileform.controls['regno'].disable();
     this.profileform.controls['indexno'].disable();
     this.profileform.controls['email'].disable();
     this.profileform.controls['field'].disable();
 
-    console.log(this.profileform.value);
+    let user = {
+      username : profileform.value.username,
+      regno    : profileform.value.regno,
+      indexno  : profileform.value.indexno,
+      email    : profileform.value.email,
+      field    : profileform.value.field
+    }
+    this.userService.updateProfile(user).subscribe(
+      data=>{
+        if(data.success){
+          //success message
+        }
+      }
+    );
   }
 
 }

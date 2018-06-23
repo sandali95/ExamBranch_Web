@@ -61,6 +61,11 @@ module.exports.findRegNo = (regno,callback)=>{
     User.find({registrationNo:regno},callback);
 }
 
+module.exports.updateProfile = (user,callback)=>{
+    console.log(user._id);
+    User.findByIdAndUpdate({_id:user._id},user,callback);
+}
+
 module.exports.findEmail = (email,callback)=>{
     User.find({email:email},callback);
 }

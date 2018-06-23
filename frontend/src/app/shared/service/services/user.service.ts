@@ -53,18 +53,17 @@ export class UserService {
 
     headers = headers.set('content-type','application/json');
     headers = headers.set('authorization', authToken);
-    return this.http.get<Authorization>('http://localhost:3000/users/authentication',{headers:headers});
+    return this.http.get<any>('http://localhost:3000/users/profile',{headers:headers});
   }
 
-  // isAuthenticated(){
-  //   this.getProfile().subscribe(
-  //     data => {
-  //       if(data.success){
-  //         return true;
-  //       }else{
-  //         return false;
-  //       }
-  //     }
-  //   );
-  // }
+  updateProfile(profile){
+    let user = this.getUser();
+    console.log(user.userid);
+    profile._id = user.userid;
+    let headers = new HttpHeaders();
+    headers =headers.set('content-type','application/json');
+    return this.http.post<any>('http://localhost:3000/users/update',{user:profile},{headers:headers});
+  }
+
+  
 }

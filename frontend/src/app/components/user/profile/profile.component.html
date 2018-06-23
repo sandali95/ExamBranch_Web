@@ -6,7 +6,7 @@
             <button mat-icon-button (click)="onEdit()">
                 <mat-icon>edit</mat-icon>
             </button>
-            <button mat-icon-button (click)="onSave()" [disabled]="!profileform.valid">
+            <button mat-icon-button (click)="onSave(profileform)" [disabled]="!profileform.valid">
                 <mat-icon>save</mat-icon>
             </button>
         </mat-toolbar>

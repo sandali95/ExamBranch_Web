@@ -4,14 +4,12 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const morgan = require('morgan');
 
-
 const config = require('./config/database');
 const userRoutes = require('./routes/users');
 const newsRoutes = require('./routes/news');
 const examRoutes = require('./routes/exams');
 const studentRoutes = require('./routes/students');
 const adminRoutes = require('./routes/admin');
-
 const app = express();
 
 //Init database connection
@@ -50,6 +48,7 @@ app.use('/students',studentRoutes);
 
 //Admin Routes
 app.use('/admin', adminRoutes);
+
 
 
 module.exports = app ;

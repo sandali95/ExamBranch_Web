@@ -55,8 +55,12 @@ export class RegistrationComponent implements OnInit {
       data => { 
         if(data.success){
           this.snackbar.open('Successfully Registered','',{duration: 2000,});
+          this.onCancel();
+        }else{
+          this.snackbar.open('Error Encountered!.Please try again','',{duration: 2000,});
+          this.onCancel();
         }
-       }//what happend?
+       }
     );
   }
 
@@ -96,8 +100,11 @@ export class RegistrationComponent implements OnInit {
   }
 
   checkbox(event, subject) {
+    console.log(event.checked);
     if (event.checked) {
       this.sub.push(subject);
+    }else{
+      //event is unchecked need to pop that subject from the list
     }
   }
 
