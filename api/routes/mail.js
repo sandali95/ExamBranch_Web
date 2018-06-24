@@ -6,22 +6,16 @@ let transporter = nodemailer.createTransport({
     port : 25,
     secure:true,
     auth: {
-        user: 'wathmali123@gmail.com',
-        pass: '1995@Wathmali'
+        user: 'exambranch.ucsc.test@gmail.com',
+        pass: 'exambranch'
     }
 });
 
-var source = "<p>Hello, my name is {{name}}. I am from {{hometown}}. I have " +
-             "{{kids.length}} kids:</p>" +
-             "<ul>{{#kids}}<li>{{name}} is {{age}}</li>{{/kids}}</ul>";
-
-var template = hbs.compile(source);
- 
 
 module.exports.sendmail = (user)=>{
     const message = "Dear student,<br> " +"This is to confirm that you have successfully registered for <b>{{exam}}</b>"
             +"Following are the subjects you've registered for.Please note that this can not be updated or changed<br>"+
-             "<ul>{{#subjects}}<li>{{this}} </li>{{/subjects}}</ul>";
+             "<ul>{{#subjects}}<li>{{this}}</li>{{/subjects}}</ul>";
     
     let template = hbs.compile(message);
 
