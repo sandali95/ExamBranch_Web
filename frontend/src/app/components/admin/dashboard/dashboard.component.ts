@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from '../../../shared/service/services/data.service';
 import { AdminService } from '../../../shared/service/services/admin.service';
 import { MatSnackBar } from '@angular/material';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,7 +12,8 @@ import { MatSnackBar } from '@angular/material';
 export class DashboardComponent implements OnInit {
 
   public newsfeed : String[];
-  constructor(private dataService : DataService, private adminService : AdminService, public snackbar : MatSnackBar) { }
+  constructor(private dataService : DataService, private adminService : AdminService, public snackbar : MatSnackBar,
+  public router : Router) { }
 
   ngOnInit() {
     this.getAllNews();
@@ -35,10 +37,10 @@ export class DashboardComponent implements OnInit {
     this.adminService.deleteNews(newsid).subscribe(
       data => {
         if(data.success){
-          //notify deleted
-
+          this.snackbar.open('Successfully deleted news.','',{duration : 2000});
+          this.router.navigate(['/admin/newsfeed']);
         }else{
-          //notify error
+          this.snackbar.open('Error Encountered!.','',{duration : 2000});
         }
       }
     );

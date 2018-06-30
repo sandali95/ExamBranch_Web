@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../../../shared/service/services/data.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { SubjectsComponent } from '../subjects/subjects.component'
 import { AdminService } from '../../../shared/service/services/admin.service';
+import {MatSnackBar} from '@angular/material';
 
 @Component({
   selector: 'app-exam-registartion',
@@ -19,7 +19,8 @@ export class ExamRegistartionComponent implements OnInit {
 
   exams = [];
 
-  constructor(private dataService: DataService, private adminService: AdminService, public fb: FormBuilder) { }
+  constructor(private dataService: DataService, private adminService: AdminService, public fb: FormBuilder,
+  public snackbar: MatSnackBar) { }
 
   ngOnInit() {
     this.initTab = this.fb.group({
@@ -63,11 +64,23 @@ export class ExamRegistartionComponent implements OnInit {
 
     if(this.disabled){
       this.adminService.postNews(post).subscribe(   //post news
-        data=>{console.log(data);}
+        data=>{
+          if(data.sucess){
+            this.snackbar.open('Successfully posted news','',{duration : 2000});
+          }else{
+            this.snackbar.open('Error encountered! Please retry','',{duration : 2000});
+          }
+        }
       ); 
     }else{
       this.adminService.postNews(post).subscribe(   //post news
-        data=>{console.log(data);}
+        data=>{
+          if(data.sucess){
+            this.snackbar.open('Successfully posted news','',{duration : 2000});
+          }else{
+            this.snackbar.open('Error encountered! Please retry','',{duration : 2000});
+          }
+        }
       ); 
       let exam = {
         exam: this.examinationTab.value.examname,

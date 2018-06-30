@@ -1,4 +1,17 @@
-<mat-card #content>
+<mat-toolbar color="primary" class="toolbar">
+  <mat-toolbar-row>
+    <span>Student Registrations</span>
+    <span class="example-spacer"></span>
+    <button mat-button  (click)="download(data.exam.exam)">
+      <mat-icon>save_alt</mat-icon>Download
+    </button>
+    <button mat-icon-button (click)="onCancel()">
+      <mat-icon>cancel</mat-icon>
+    </button>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-card #content style="margin: 10px;">
   <h2>{{data.exam.exam}} - Report</h2>
   <hr>
   <h3>Starting Date : </h3>
@@ -40,7 +53,3 @@
     <p>{{data.exam.repeat_registrations.length}}</p>
   </h3>
 </mat-card>
-
-
-
-<button (click)="download()">Download</button>

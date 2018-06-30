@@ -29,7 +29,7 @@ export class ProfileComponent implements OnInit {
   getData() {
     this.dataService.getAllExams().subscribe(
       data => {
-        console.log(data); this.dataSource = data.data;
+       this.dataSource = data.data;
       }
     );
   }

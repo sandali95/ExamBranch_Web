@@ -1,14 +1,17 @@
 <mat-card style="margin-top: 10px;">
   <mat-tab-group>
-    <mat-tab label="Post News">
-      <h2>This form is to Post about the new exam.</h2>
+    <mat-tab>
+        <ng-template mat-tab-label>
+            <mat-icon>notes</mat-icon><br>
+            Add News
+          </ng-template>
       <form [formGroup]="initTab">
         <mat-form-field class="block">
-          <input matInput placeholder="Heading" type="text" formControlName="heading">
+          <input matInput placeholder="News Heading" type="text" formControlName="heading">
         </mat-form-field>
   
         <mat-form-field class="block">
-          <textarea matInput placeholder="Content" type="text" formControlName="content"></textarea>
+          <textarea matInput placeholder="News Content" type="text" formControlName="content"></textarea>
         </mat-form-field>
   
         <mat-form-field>
@@ -33,7 +36,11 @@
     <!-- end of 1st tab -->
   
   
-    <mat-tab label="Add Examination" [disabled]="disabled">
+    <mat-tab  [disabled]="disabled">
+        <ng-template mat-tab-label>
+            <mat-icon>assignment</mat-icon><br>
+            Add Exam
+          </ng-template>
       <form [formGroup]="examinationTab">
         <mat-form-field class="block">
           <input matInput placeholder="Exam For" type="text" formControlName="examname">
@@ -51,12 +58,22 @@
   
   
     <mat-tab label="Add Subjects" [disabled]="disabled">
+        <ng-template mat-tab-label>
+            <mat-icon>edit</mat-icon><br>
+            Add Subjects
+          </ng-template>
       <app-subjects></app-subjects>
     </mat-tab>
     <!-- end of 3rd tab -->
   
   
-    <mat-tab label="Confirm"sss>
+    <mat-tab>
+        <ng-template mat-tab-label>
+            <mat-icon>save</mat-icon><br>
+           Confirm
+          </ng-template>
+          <h5>Post this to the dashboard</h5>
+          <hr>
       <button mat-raised-button color="primary" (click)="onConfirm()">Confirm</button>
     </mat-tab>
   </mat-tab-group>

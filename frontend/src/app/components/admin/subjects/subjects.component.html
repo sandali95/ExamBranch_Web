@@ -14,7 +14,7 @@
     </a>
     <mat-card class="subjects">
       <mat-form-field class="block" *ngFor="let col of cs_1.index; let i=index">
-        <input matInput type="text" id= placeholder="subject" (keyup.enter)="addSubject($event.target.value,cs_1)" />
+        <input matInput type="text"  placeholder="subject" (keyup.enter)="addSubject($event.target.value,cs_1)" />
         <button mat-button matSuffix mat-icon-button aria-label="Clear" (click)="onRemove(cs_1.index)">
           <mat-icon>close</mat-icon>
         </button>

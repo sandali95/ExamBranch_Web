@@ -1,3 +1,6 @@
+.example-spacer {
+  flex: 1 1 auto;
+}
 body {
     font-family: "Open Sans", sans-serif;
     line-height: 1.25;
@@ -12,6 +15,15 @@ body {
     table-layout: fixed;
   }
   
+  .toolbar {
+    border-radius: 5px;
+    padding-bottom: 10px;
+  }
+
+  .example-spacer {
+    flex: 1 1 auto;
+  }
+
   table caption {
     font-size: 1.5em;
     margin: .5em 0 .75em;
