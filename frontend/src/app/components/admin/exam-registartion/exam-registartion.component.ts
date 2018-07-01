@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from '../../../shared/service/services/data.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AdminService } from '../../../shared/service/services/admin.service';
-import {MatSnackBar} from '@angular/material';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-exam-registartion',
@@ -20,7 +20,7 @@ export class ExamRegistartionComponent implements OnInit {
   exams = [];
 
   constructor(private dataService: DataService, private adminService: AdminService, public fb: FormBuilder,
-  public snackbar: MatSnackBar) { }
+    public snackbar: MatSnackBar) { }
 
   ngOnInit() {
     this.initTab = this.fb.group({
@@ -62,35 +62,44 @@ export class ExamRegistartionComponent implements OnInit {
       studenttype: this.initTab.value.studenttype
     };
 
-    if(this.disabled){
+    if (this.disabled) {
       this.adminService.postNews(post).subscribe(   //post news
-        data=>{
-          if(data.sucess){
-            this.snackbar.open('Successfully posted news','',{duration : 2000});
-          }else{
-            this.snackbar.open('Error encountered! Please retry','',{duration : 2000});
+        data => {
+          if (data.sucess) {
+            this.snackbar.open('Successfully posted news', '', { duration: 2000 });
+          } else {
+            this.snackbar.open('Error encountered! Please retry', '', { duration: 2000 });
           }
-        }
-      ); 
-    }else{
-      this.adminService.postNews(post).subscribe(   //post news
-        data=>{
-          if(data.sucess){
-            this.snackbar.open('Successfully posted news','',{duration : 2000});
-          }else{
-            this.snackbar.open('Error encountered! Please retry','',{duration : 2000});
-          }
-        }
-      ); 
+        });
+    } else {
+      //Register the exam
       let exam = {
         exam: this.examinationTab.value.examname,
         date: this.examinationTab.value.date,
         subjects: this.dataService.getSubjects()
       }
       this.adminService.postExam(exam).subscribe(  //save new exams
-        data=>{console.log(data);}
+        data => {
+          if (data.success) {
+            post.examid = data.examid;
+            this.adminService.postNews(post).subscribe(   //post news
+              data => {
+                if (data.success) {
+                  this.snackbar.open('Successfully posted news', '', { duration: 2000 });
+                } else {
+                  this.snackbar.open('Error encountered! Please', '', { duration: 2000 });
+                }
+              });
+          } else {
+            console.log(data);
+            this.snackbar.open('Error encountered! Please retry!', '', { duration: 2000 });
+          }
+
+        }
       )
-    } 
+
+
+    }
   }
 
   //save post

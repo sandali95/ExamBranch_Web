@@ -157,7 +157,7 @@ function verifyToken(req, res, next) {
 
 }
 
-router.get('/regsiteredexams', (req, res) => {
+router.get('/regsiteredexams/hehe', (req, res) => {
     let _id = req.query.userid;
     User.getRegisteredExams(_id, (error, data) => {
         if (error) {

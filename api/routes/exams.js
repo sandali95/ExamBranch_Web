@@ -16,6 +16,8 @@ router.post('/save', (req, res) => {
     }
 
     Exam.addExam(exam, (error, data) => {
+        console.log(exam);
+
         if (error) {
             res.json({
                 success: false,
@@ -25,6 +27,7 @@ router.post('/save', (req, res) => {
             res.status(201).json({
                 success: true,
                 message: 'Exam is Saved',
+                examid : data._id
             });
         }
     });
