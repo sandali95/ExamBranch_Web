@@ -4,7 +4,6 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ExamRegistartionComponent } from './exam-registartion/exam-registartion.component';
 import { AdminGuard } from '../../shared/service/services/admin.guard';
 import { ProfileComponent } from './profile/profile.component';
-import { NewExamComponent } from './new-exam/new-exam.component';
 
 const routes: Routes = [
   // {

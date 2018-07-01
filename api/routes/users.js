@@ -71,7 +71,7 @@ router.post('/login', (req, res) => {
                     userId: user[0]._id
                 },
                     config.secret,
-                    { expiresIn: '1h' });
+                    { expiresIn: 60 });
 
                 if (result) {
                     return res.status(200).json({
@@ -157,7 +157,7 @@ function verifyToken(req, res, next) {
 
 }
 
-router.get('/regsiteredexams/hehe', (req, res) => {
+router.get('/regsiteredexams', (req, res) => {
     let _id = req.query.userid;
     User.getRegisteredExams(_id, (error, data) => {
         if (error) {

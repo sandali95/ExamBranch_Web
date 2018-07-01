@@ -8,7 +8,6 @@ const config = require('./config/database');
 const userRoutes = require('./routes/users');
 const newsRoutes = require('./routes/news');
 const examRoutes = require('./routes/exams');
-const studentRoutes = require('./routes/students');
 const adminRoutes = require('./routes/admin');
 const app = express();
 
@@ -42,9 +41,6 @@ app.use('/users',userRoutes);
 
 //Exam routes
 app.use('/exams',examRoutes);
-
-//Student routes
-app.use('/students',studentRoutes);
 
 //Admin Routes
 app.use('/admin', adminRoutes);

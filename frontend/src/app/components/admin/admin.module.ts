@@ -11,7 +11,6 @@ import { ProfileComponent } from './profile/profile.component';
 import { ViewSubjectsComponent } from './view-subjects/view-subjects.component';
 import { ViewRegistrationsComponent } from './view-registrations/view-registrations.component';
 import { ReportGeneratorComponent } from './report-generator/report-generator.component';
-import { NewExamComponent } from './new-exam/new-exam.component';
 
 @NgModule({
   imports: [
@@ -30,7 +29,6 @@ import { NewExamComponent } from './new-exam/new-exam.component';
     ViewSubjectsComponent,
     ViewRegistrationsComponent,
     ReportGeneratorComponent,
-    NewExamComponent
   ],
   entryComponents:[ViewSubjectsComponent, ViewRegistrationsComponent, ReportGeneratorComponent]
 })
