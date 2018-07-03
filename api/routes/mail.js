@@ -13,8 +13,8 @@ let transporter = nodemailer.createTransport({
 
 
 module.exports.sendmail = (user)=>{
-    const message = "Dear student,<br> " +"This is to confirm that you have successfully registered for <b>{{exam}}</b>"
-            +"Following are the subjects you've registered for.Please note that this can not be updated or changed<br>"+
+    const message = "<Dear student,<br> " +"This is to confirm that you have successfully registered for <b>{{exam}}</b><br>"
+            +".Following are the subjects you've registered for.Please note that this can not be updated or changed<br>"+
              "<ul>{{#subjects}}<li>{{this}}</li>{{/subjects}}</ul>";
     
     let template = hbs.compile(message);

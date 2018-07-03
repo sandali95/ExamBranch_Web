@@ -16,7 +16,7 @@ export class ExamRegistartionComponent implements OnInit {
   examId: String;
   studenttype: String;
   disabled: boolean = true;
-
+  startDate = new Date();
   exams = [];
 
   constructor(private dataService: DataService, private adminService: AdminService, public fb: FormBuilder,
@@ -65,7 +65,7 @@ export class ExamRegistartionComponent implements OnInit {
     if (this.disabled) {
       this.adminService.postNews(post).subscribe(   //post news
         data => {
-          if (data.sucess) {
+          if (data.success) {
             this.snackbar.open('Successfully posted news', '', { duration: 2000 });
           } else {
             this.snackbar.open('Error encountered! Please retry', '', { duration: 2000 });

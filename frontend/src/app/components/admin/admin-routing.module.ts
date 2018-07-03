@@ -20,6 +20,11 @@ const routes: Routes = [
 
   },
   {
+    path : 'newsfeed/:id',
+    component : DashboardComponent,
+
+  },
+  {
     path : 'newExam',
     component : ExamRegistartionComponent
   }

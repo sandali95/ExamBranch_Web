@@ -1,4 +1,5 @@
 const express = require('express');
+const multer = require('multer');
 
 const Exam = require('../models/exam');
 const Student = require('../models/user');
@@ -7,12 +8,15 @@ const mail = require('./mail'); //send mails for successfull regstrations
 const router = express.Router();
 
 //add new exam shedule
-router.post('/save', (req, res) => {
+router.post('/save',(req, res) => {
+    console.log(req.body);
+    let date = req.body.date.split("T");
+    console.log(date);
     let exam = {
         //exam_id : req.body.news_id,
         exam: req.body.exam,
-        date: req.body.date,
-        subjects: req.body.subjects
+        date: date[0],
+        subjects: req.body.subjects,
     }
 
     Exam.addExam(exam, (error, data) => {
@@ -27,7 +31,7 @@ router.post('/save', (req, res) => {
             res.status(201).json({
                 success: true,
                 message: 'Exam is Saved',
-                examid : data._id
+                examid: data._id
             });
         }
     });
@@ -39,23 +43,23 @@ router.post('/register', (req, res) => {
     let exam_id = req.body.id;
     let student_id = req.body.userid;
     let student = {
-        indexno : req.body.indexno,
+        indexno: req.body.indexno,
         registration: req.body.registration,
         fullname: req.body.fullname,
-        email   : req.body.email,
-        year    : req.body.year,
-        field   : req.body.field,
+        email: req.body.email,
+        year: req.body.year,
+        field: req.body.field,
         subjects: req.body.subjects
     }
 
     let exam = {
-        examid : req.body.id,
-        exam   : req.body.exam,
-        date   : req.body.date ,
-        subjects : req.body.subjects
+        examid: req.body.id,
+        exam: req.body.exam,
+        date: req.body.date,
+        subjects: req.body.subjects
     }
-    
-    if(req.body.type == 'undergraduate'){
+
+    if (req.body.type == 'undergraduate') {
         Exam.updateExam(exam_id, student, (error, data) => {
             if (error) {
                 res.status(500).json({
@@ -69,7 +73,7 @@ router.post('/register', (req, res) => {
                 });
             }
         });
-    }else{//repeat exam registration
+    } else {//repeat exam registration
         Exam.updateRepeatExam(exam_id, student, (error, data) => {
             if (error) {
                 res.status(500).json({
@@ -84,9 +88,9 @@ router.post('/register', (req, res) => {
             }
         });
     }
-    
 
-    Student.addExam(student_id, exam, (error,data)=>{
+
+    Student.addExam(student_id, exam, (error, data) => {
         if (error) {
             console.log(error)
         } else {
@@ -95,9 +99,9 @@ router.post('/register', (req, res) => {
     });
 
     let std = {
-        exam   : req.body.exam,
-        subjects : req.body.subjects,
-        email : req.body.email 
+        exam: req.body.exam,
+        subjects: req.body.subjects,
+        email: req.body.email
     }
     mail.sendmail(std);
 });
@@ -152,7 +156,7 @@ router.get('/getallexams', (req, res) => {
                 success: false,
                 message: error,
             });
-        }else{
+        } else {
             res.json({
                 success: true,
                 data: data
