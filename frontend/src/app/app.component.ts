@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
+import { UserService } from './shared/service/services/user.service';
 import { AdminService } from './shared/service/services/admin.service';
-import { ObservableMedia } from '@angular/flex-layout';
+
 
 @Component({
   selector: 'app-root',
@@ -9,8 +10,17 @@ import { ObservableMedia } from '@angular/flex-layout';
 })
 export class AppComponent {
 
-  constructor(private admin : AdminService, private observableMedia: ObservableMedia){}
+  constructor(private userService: UserService, private adminService: AdminService){}
 
   title = 'UCSC Exam Branch';
+  
+  
+  ngOnInit() {
+    if(localStorage.length>0){
+      this.userService.loggedIn = true;
+    }else{
+      this.userService.loggedIn = false;
+    }
+  }
 
 }

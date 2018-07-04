@@ -21,13 +21,13 @@ export class RegistrationComponent implements OnInit {
 
   ngOnInit() {
     this.registrationForm = this.fb.group({
-      field: [''],
+      field  : [''],
       indexno: [{value :this.data.user.indexno, disabled : true}],
-      regno: [{value :this.data.user.regno, disabled : true}],
-      name: [''],
-      contact: ['',[Validators.required,Validators.minLength(10)]],
-      email: ['',Validators.required],
-      year: [''],
+      regno  : [{value :this.data.user.regno, disabled : true}],
+      name   : [''],
+      contact: ['',[Validators.required,Validators.maxLength(10),Validators.pattern('/^\d{10}$/')]],
+      email  : ['',[Validators.required,Validators.email]],
+      year   : [''],
       subjects: ['']
     });
   }

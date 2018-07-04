@@ -11,16 +11,20 @@ export class AdminGuard implements CanActivate,CanActivateChild{
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
     if(this.adminService.loggedAsAdmin()){
+      this.adminService.loggedIn = true;
       return true;
     }else{
+      this.adminService.loggedIn = false;
       return false;
     }
   }
 
   canActivateChild(){
     if(this.adminService.loggedAsAdmin()){
+      this.adminService.loggedIn = true;
       return true;
     }else{
+      this.adminService.loggedIn = false;
       return false;
     }
   }

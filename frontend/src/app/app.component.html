@@ -5,7 +5,7 @@
 </div>
 
 <div class="column-2"  style="margin-left: 2%;">
-    <mat-card class="column-right" >
+    <mat-card class="column-right" *ngIf="userService.loggedIn||adminService.loggedIn">
         <app-calender></app-calender>
     </mat-card>  
 </div> 

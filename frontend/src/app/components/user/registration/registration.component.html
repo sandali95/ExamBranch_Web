@@ -37,8 +37,9 @@
               <input matInput placeholder="Name in Full"  formControlName="name" type="text" >
           </mat-form-field>
 
-          <mat-form-field >
-            <input matInput placeholder="Contact No" formControlName="contact"  type="number">
+          <mat-form-field hintLabel="Max 10 numbers">
+            <input matInput #input maxlength="10" placeholder="Contact Number" formControlName="contact"  type="number">
+            <mat-hint align="end">{{input.value?.length || 0}}/10</mat-hint>
           </mat-form-field>
               
           <mat-form-field >

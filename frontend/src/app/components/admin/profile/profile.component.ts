@@ -90,7 +90,7 @@ export class ProfileComponent implements OnInit {
   }
 
   viewRepeaters(element) {
-
+    
   }
 
   viewReport(element){

@@ -4,7 +4,8 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 @Injectable()
 export class AdminService {
   public test: String;
-
+  loggedIn : boolean;
+  
   constructor(private http: HttpClient) { }
 
   authenticate(user) {

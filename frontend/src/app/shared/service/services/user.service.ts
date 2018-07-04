@@ -17,7 +17,7 @@ export interface Authorization{
 @Injectable()
 export class UserService {
   user : any;
-
+  loggedIn: boolean;
   constructor(private http : HttpClient) { }
 
   authenticate(user){
