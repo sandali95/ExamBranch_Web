@@ -100,7 +100,6 @@ router.post('/login', (req, res) => {
 
 //update profile
 router.post('/update', (req, res) => {
-    console.log(req.body.user);
     User.updateProfile(req.body.user, (err, data) => {
         if (err) {
             res.json({
@@ -111,7 +110,7 @@ router.post('/update', (req, res) => {
         } else {
             res.status(200).json({
                 success: true,
-                message: 'Authorizad',
+                message: 'Successfull',
                 data : data
             });
         }

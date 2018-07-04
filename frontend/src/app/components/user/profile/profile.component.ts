@@ -26,7 +26,7 @@ export class ProfileComponent implements OnInit {
       username : [{value:this.user.username,disabled:this.edit},Validators.required],
       regno    : [{value:this.user.regno,disabled:this.edit},Validators.required],
       indexno  : [{value:this.user.indexno,disabled:this.edit},Validators.required],
-      email    : [{value:this.user.email,disabled:this.edit},Validators.required],
+      email    : [{value:this.user.email,disabled:this.edit},[Validators.required,Validators.email]],
       field    : [{value:this.user.field,disabled:this.edit},Validators.required]
     });
   }
@@ -62,6 +62,7 @@ export class ProfileComponent implements OnInit {
     this.userService.updateProfile(user).subscribe(
       data=>{
         if(data.success){
+          console.log(data);
           //success message
         }
       }
