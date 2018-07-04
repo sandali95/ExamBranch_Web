@@ -70,6 +70,7 @@ export class ExamRegistartionComponent implements OnInit {
           } else {
             this.snackbar.open('Error encountered! Please retry', '', { duration: 2000 });
           }
+          this.initTab.reset();
         });
     } else {
       //Register the exam
@@ -85,20 +86,20 @@ export class ExamRegistartionComponent implements OnInit {
             this.adminService.postNews(post).subscribe(   //post news
               data => {
                 if (data.success) {
+                  this.initTab.reset();
+                  this.examinationTab.reset();
                   this.snackbar.open('Successfully posted news', '', { duration: 2000 });
                 } else {
+                  this.examinationTab.reset();
                   this.snackbar.open('Error encountered! Please', '', { duration: 2000 });
                 }
               });
           } else {
-            console.log(data);
+            this.initTab.reset();
             this.snackbar.open('Error encountered! Please retry!', '', { duration: 2000 });
           }
-
         }
       )
-
-
     }
   }
 
